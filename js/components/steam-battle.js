@@ -1,4 +1,6 @@
 import React from 'react';
+import Form from './form';
+import Player from './player';
 
 export default class SteamBattle extends React.Component {
     constructor(props) {
@@ -8,8 +10,30 @@ export default class SteamBattle extends React.Component {
     render() {
         return (
             <div className='steam-battle'>
-                Hello world!
+                <Form />
+                <Player player={} />
+                <Player player={} />
             </div>
         )
     }
 }
+
+/**
+player = {
+    playerid,
+    winloss,
+    profile,
+    persona,
+    avatar,
+    score {
+        total,
+        games,
+        played,
+        playtime,
+        recent,
+        achievements,
+        rares,
+        superrares
+    }
+}
+ */
