@@ -7,7 +7,9 @@ export default class SteamBattle extends React.Component {
 
     render() {
         return (
-            <div className='steam-battle'>Hello world!</div>
+            <div className='steam-battle'>
+                Hello world!
+            </div>
         )
     }
 }
