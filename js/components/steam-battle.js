@@ -20,7 +20,7 @@ export default class SteamBattle extends React.Component {
 
 /**
 player = {
-    playerid,
+    id,
     winloss,
     profile,
     persona,

@@ -1,5 +1,21 @@
 import React from 'react';
 
+/*
+const STEAM_API_KEY='2917D94AAC5A277FACFECDCA153702E5';
+export const getIdFromVanity = (player, vanity) => dispatch => {
+    const url = `http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${STEAM_API_KEY}&vanityurl=${vanity}`;
+    return fetch(url).then(response => {
+        if(response.response.steamid) dispatch(setSteamID(player,response.response.steamid));
+        else dispatch(steamError('getIdFromVanity error: invalid response'));
+    })
+    .catch(error => {
+        dispatch(steamError('getIdFromVanity error' + error));
+    });
+}
+*/
+
+
+
 export default function Form(props) {
     return (
         <form action="/battle">
