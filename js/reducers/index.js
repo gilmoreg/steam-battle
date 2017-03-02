@@ -8,7 +8,7 @@ const initialRepositoryState = {
 export const steamBattleReducer = (state=initialRepositoryState, action) => {
     switch(action.type) {
         case 'FILL_PLAYERS': {
-            console.log('fillplayers',action);
+            //console.log('fillplayers',action);
             return Object.assign({},state, {
                 players: [
                     action.data[0],

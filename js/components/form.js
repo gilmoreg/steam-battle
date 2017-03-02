@@ -33,7 +33,7 @@ export class Form extends React.Component {
             Steam.getPlayerData(ids)
                 .then(data => {
                     this.props.dispatch(actions.fillPlayers(data.players));
-                    console.log('state players',this.props.players);
+                    //console.log('state players',this.props.players);
                 })
                 .catch(err => console.log(err));
 
