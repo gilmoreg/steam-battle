@@ -1,11 +1,8 @@
 import store from '../store';
-import * as steam from './steam';
 
 export const submitBattle = (player1, player2) => {
     
 };
-
-export 
 
 export const SUBMIT_RANDOM = 'SUBMIT_RANDOM';
 export const submitRandom = () => ({
