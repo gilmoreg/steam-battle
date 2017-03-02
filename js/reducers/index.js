@@ -16,6 +16,15 @@ export const steamBattleReducer = (state=initialRepositoryState, action) => {
                 ]
             });
         }
+        case 'SET_SCORE': {
+            console.log('setscore',action);
+            return Object.assign({},state, {
+                players: [
+                    action.data[0],
+                    action.data[1]
+                ]
+            });
+        }
         default: return state;
     }
 }
