@@ -1,12 +1,9 @@
 import store from '../store';
 
-export const submitBattle = (player1, player2) => {
-    
-};
-
-export const SUBMIT_RANDOM = 'SUBMIT_RANDOM';
-export const submitRandom = () => ({
-    type: SUBMIT_RANDOM
+export const FILL_PLAYERS = 'FILL_PLAYERS';
+export const fillPlayers = data => ({
+    type: FILL_PLAYERS,
+    data
 });
 
 export const SET_SCORE = 'SET_SCORE';

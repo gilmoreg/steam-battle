@@ -1,8 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import ReactDOM from 'react-dom';
 import * as Steam from '../steam';
+import * as actions from '../actions';
 
-export default class Form extends React.Component {
+export class Form extends React.Component {
     constructor(props) {
         super(props);
         this.randomBattle = this.randomBattle.bind(this);
@@ -11,7 +13,6 @@ export default class Form extends React.Component {
 
     randomBattle(e) {
         e.preventDefault();
-        console.log('random battle time!');
         // Until I implement a random list to import
         ReactDOM.findDOMNode(this.player1input).value = 'solitethos';
         ReactDOM.findDOMNode(this.player2input).value = 'shoxieJESUS';
@@ -20,13 +21,31 @@ export default class Form extends React.Component {
 
     beginBattle(e) {
         if(e) e.preventDefault();
-        console.log('fight!');
-        Steam.getSteamID(ReactDOM.findDOMNode(this.player1input).value)
-            .then(sid => console.log('player1',sid))
-            .catch(err => console.log(err));
-        Steam.getSteamID(ReactDOM.findDOMNode(this.player2input).value)
-            .then(sid => console.log('player2',sid))
-            .catch(err => console.log(err));
+        // Need to validate input if this is called first
+        const p1id = Steam.getSteamID(ReactDOM.findDOMNode(this.player1input).value);
+        const p2id = Steam.getSteamID(ReactDOM.findDOMNode(this.player2input).value);
+        
+        // We have both ids, let's start the fight
+        Promise.all([p1id,p2id]).then(ids => {
+            let calls = [];
+            Steam.getPlayerData(ids)
+                .then(data => {
+                    this.props.dispatch(actions.fillPlayers(data.players));
+                    console.log('state players',this.props.players);
+                })
+
+            const player1Games = Steam.getOwnedGames(ids[0]);
+            const player2Games = Steam.getOwnedGames(ids[1]);
+            Promise.all([player1Games,player2Games])
+                .then(data => {
+                    console.log("data",data);
+                })
+                .catch(err => console.log(err));
+            
+        })
+        .catch(err => {
+            console.log('beginBattle Promise.all fail', err);
+        })
     }
 
     render() {
@@ -48,3 +67,29 @@ export default class Form extends React.Component {
         );
     } 
 }
+
+const mapStateToProps = (state, props) => ({
+    players: state.players
+});
+
+export default connect(mapStateToProps)(Form);
+
+/*
+player = {
+    id,
+    winloss,
+    profile,
+    persona,
+    avatar,
+    score {
+        total,
+        games,
+        played,
+        playtime,
+        recent,
+        achievements,
+        rares,
+        superrares
+    }
+}
+ */
