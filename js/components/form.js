@@ -13,17 +13,19 @@ export default class Form extends React.Component {
         e.preventDefault();
         console.log('random battle time!');
         // Until I implement a random list to import
-        ReactDOM.findDOMNode(this.player1input).value = '76561198007908897';
-        ReactDOM.findDOMNode(this.player2input).value = '76561198006920295';
+        ReactDOM.findDOMNode(this.player1input).value = 'solitethos';
+        ReactDOM.findDOMNode(this.player2input).value = 'shoxieJESUS';
         this.beginBattle(e);
     }
 
     beginBattle(e) {
         if(e) e.preventDefault();
         console.log('fight!');
-        //Steam.getSteamID(ReactDOM.findDOMNode(this.player1input).value));
-        Steam.getSteamID('rageart')
-            .then(sid => console.log(sid))
+        Steam.getSteamID(ReactDOM.findDOMNode(this.player1input).value)
+            .then(sid => console.log('player1',sid))
+            .catch(err => console.log(err));
+        Steam.getSteamID(ReactDOM.findDOMNode(this.player2input).value)
+            .then(sid => console.log('player2',sid))
             .catch(err => console.log(err));
     }
 
