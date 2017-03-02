@@ -15,18 +15,6 @@ export const steamBattleReducer = (state=initialRepositoryState, action) => {
                     action.data[1]
                 ]
             });
-            
-            //Object.assign({},state,
-               /* {}) players: state.players.map(p => {
-                    console.log('players',p);
-                    if(p.steamid===action.data.steamid) return p;
-                    return {
-                        steamid:action.data.steamid,
-                        personaname:action.data.personaname,
-                        profileurl:action.data.profileurl,
-                        avatarfull:action.data.avatarfull
-                    }
-                }) */
         }
         default: return state;
     }

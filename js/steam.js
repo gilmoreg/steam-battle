@@ -48,7 +48,7 @@ export const getPlayerData = ids => {
 }
 
 
-export const getOwnedGames = id => {
+const getOwnedGames = id => {
     return new Promise((resolve,reject) => {
         const url = `${baseAPIUrl}/owned/${id}`;
         axios(url).then(response => {
@@ -58,6 +58,22 @@ export const getOwnedGames = id => {
         .catch(error => { reject(`getOwnedGames error: ${error}`) } );
     });
 }
+
+export const calculateScore = ids => {
+    const player1Games = getOwnedGames(ids[0]);
+    const player2Games = getOwnedGames(ids[1]);
+    Promise.all([player1Games,player2Games])
+        .then(data => {
+            console.log("data",data);
+            // Our first score: # of games owned
+            players[0].owned = data[0].games.length;
+            players[1].owned = data[1].games.length;
+        })
+        .catch(err => console.log(err));
+}
+
+ 
+            
 
 /*
 player = {

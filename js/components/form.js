@@ -20,6 +20,8 @@ export class Form extends React.Component {
     }
 
     beginBattle(e) {
+        let players = [ {}, {} ];
+
         if(e) e.preventDefault();
         // Need to validate input if this is called first
         const p1id = Steam.getSteamID(ReactDOM.findDOMNode(this.player1input).value);
@@ -33,15 +35,12 @@ export class Form extends React.Component {
                     this.props.dispatch(actions.fillPlayers(data.players));
                     console.log('state players',this.props.players);
                 })
-
-            const player1Games = Steam.getOwnedGames(ids[0]);
-            const player2Games = Steam.getOwnedGames(ids[1]);
-            Promise.all([player1Games,player2Games])
-                .then(data => {
-                    console.log("data",data);
-                })
                 .catch(err => console.log(err));
-            
+
+            Steam.calculateScore(ids)
+                .then(data => {
+                    //this.props.dispatch(actions.)
+                })
         })
         .catch(err => {
             console.log('beginBattle Promise.all fail', err);
@@ -60,7 +59,7 @@ export class Form extends React.Component {
                     <input type="text" id="player2-input" ref={(input) => { this.player2input = input; }} />
                 </div>
                 <div className="buttons col-12">
-                    <button type="submit" className="button">Fight</button>
+                    <button className="button" onClick={this.beginBattle}>Fight</button>
                     <button className="button" onClick={this.randomBattle}>Random</button>
                 </div>
             </form>
@@ -68,6 +67,7 @@ export class Form extends React.Component {
     } 
 }
 
+// This component really doesn't need these props but they are useful for testing
 const mapStateToProps = (state, props) => ({
     players: state.players
 });
