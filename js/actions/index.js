@@ -1,3 +1,4 @@
+require('babel-polyfill');
 import store from '../store';
 
 export const FILL_PROFILE = 'FILL_PROFILE';

@@ -1,3 +1,4 @@
+require('babel-polyfill');
 import * as actions from '../actions/index';
 
 const initialRepositoryState = {

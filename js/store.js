@@ -1,3 +1,4 @@
+require('babel-polyfill');
 import {createStore, applyMiddleware} from 'redux';
 import * as reducers from './reducers/index';
 

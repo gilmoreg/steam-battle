@@ -1,3 +1,4 @@
+require('babel-polyfill');
 import React from 'react';
 import Form from './form';
 import Player from './player';

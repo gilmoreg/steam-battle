@@ -1,3 +1,4 @@
+require('babel-polyfill');
 const SteamID = require('steamid');
 import axios from 'axios';
 const baseAPIUrl = 'https://protected-dusk-95868.herokuapp.com';
