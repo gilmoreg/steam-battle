@@ -10,7 +10,9 @@ export default class SteamBattle extends React.Component {
     render() {
         return (
             <div className='steam-battle'>
-                <Form />               
+                <Form />
+                <Player pid="0" />
+                <Player pid="1" />
             </div>
         )
     }

@@ -15,7 +15,7 @@ export class Form extends React.Component {
         e.preventDefault();
         // Until I implement a random list to import
         ReactDOM.findDOMNode(this.player1input).value = 'solitethos';
-        ReactDOM.findDOMNode(this.player2input).value = 'shoxieJESUS';
+        ReactDOM.findDOMNode(this.player2input).value = '76561198036993658';
         this.beginBattle(e);
     }
 
@@ -30,13 +30,12 @@ export class Form extends React.Component {
             players.forEach((id,index) => {
                 Steam.getPlayerProfile(id)
                     .then(profile => {
-                        //dispatch
+                        this.props.dispatch(actions.fillProfile(index,profile));
                     })
                     .catch(err => console.log(err));
                 Steam.calculateScore(id)
                     .then(score => {
-                        console.log(score);
-                        //dispatch
+                        this.props.dispatch(actions.setScore(index,score));
                     })
                     .catch(err => console.log(err));
             })

@@ -1,9 +1,10 @@
 import store from '../store';
 
-export const FILL_PLAYERS = 'FILL_PLAYERS';
-export const fillPlayers = data => ({
-    type: FILL_PLAYERS,
-    data
+export const FILL_PROFILE = 'FILL_PROFILE';
+export const fillProfile = (player, profile) => ({
+    type: FILL_PROFILE,
+    player,
+    profile
 });
 
 export const SET_SCORE = 'SET_SCORE';

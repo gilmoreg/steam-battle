@@ -18,32 +18,6 @@ const getIdFromVanity = vanity => {
     });
 }
 
-export const getSteamID = id => {
-    return new Promise((resolve,reject) => {
-        try {
-            const sid = new SteamID(id);
-            resolve(sid.getSteamID64());
-        }
-        catch(error) {
-            // If SteamID threw an error, this might be a vanity URL
-            getIdFromVanity(id)
-                .then(sid => resolve(sid))
-                .catch(err => reject(`getSteamID ${error} ${err}`));
-        }
-    });
-}
-
-export const getPlayerProfile = id => { // todo rename to Profile
-    return new Promise((resolve,reject) => {
-        const url = `${baseAPIUrl}/player/${id}`;
-        axios(url).then(response => {
-            if(response.data) resolve(response.data);
-            else reject('Invalid response from API');
-        })
-        .catch(error => { reject(`getPlayerData error: ${error}`) } );
-    });
-}
-
 // TODO some code duplication going on here
 // When I tried to get separation though it didn't seem to work - still had to have all the Promise/then/catch
 const getOwnedGames = id => {
@@ -75,6 +49,32 @@ const score = player => {
     //      might need to adjust
     // 1 point per achievement
     return player.owned + (player.playtime/60) + (player.recent/60) + player.achievements;
+}
+
+export const getSteamID = id => {
+    return new Promise((resolve,reject) => {
+        try {
+            const sid = new SteamID(id);
+            resolve(sid.getSteamID64());
+        }
+        catch(error) {
+            // If SteamID threw an error, this might be a vanity URL
+            getIdFromVanity(id)
+                .then(sid => resolve(sid))
+                .catch(err => reject(`getSteamID ${error} ${err}`));
+        }
+    });
+}
+
+export const getPlayerProfile = id => { // todo rename to Profile
+    return new Promise((resolve,reject) => {
+        const url = `${baseAPIUrl}/player/${id}`;
+        axios(url).then(response => {
+            if(response.data) resolve(response.data.player[0]);
+            else reject('Invalid response from API');
+        })
+        .catch(error => { reject(`getPlayerData error: ${error}`) } );
+    });
 }
 
 export const calculateScore = id => {

@@ -12,7 +12,7 @@ axios('https://protected-dusk-95868.herokuapp.com');
 document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(
         <Provider store={store}>
-            <SteamBattle />
+            <SteamBattle props={store} />
         </Provider>,
         document.getElementById('app')
     )

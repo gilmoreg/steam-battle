@@ -1,14 +1,30 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
-export default function Player(props) {
-    return (
-        <div id="{props.player.playerid}" class="player col-6 blue">
-          <h2>{props.player.winloss || 'Win'}</h2>
+export class Player extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const {player} = this.props;
+    console.log('Player props',player);
+    if(player.profile) {
+      return ( 
+          <div id={player.profile.steamid} className="player col-6 blue"> 
+            <h2><a href={player.profile.profileurl} title={player.profile.personaname} target="_blank">{player.profile.personaname}</a></h2>
             <p>
-              <a href="{props.player.profile}"><h3>{props.player.persona}</h3></a>
+              <img src={player.profile.avatarfull} alt={player.profile.personaname} title={player.profile.personaname} />
             </p>
-          <img src="{props.player.avatar}" alt="{props.player.persona}" />
-          <Score score={props.player.score}/>
-        </div>
-    );
+          </div>
+      );
+    }
+    return ( <div></div> );
+  }
 }
+
+const mapStateToProps = (state, props) => ({
+  player: state.players[props.pid]
+})
+
+export default connect(mapStateToProps)(Player);
