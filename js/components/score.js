@@ -11,8 +11,6 @@ export default function Score(props) {
               <li>Total Playtime: {props.score.playtime}</li>
               <li>Recent Playtime: {props.score.recent} </li>
               <li>Achievements: {props.score.achievements}</li>
-              <li>Rare Achievements: {props.score.rares}</li>
-              <li>Super Rare Achievements: {props.score.superrares}</li>
             </ul>
         </div>
     );

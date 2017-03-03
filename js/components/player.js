@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Score from './score';
 
 export class Player extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ export class Player extends React.Component {
             <p>
               <img src={player.profile.avatarfull} alt={player.profile.personaname} title={player.profile.personaname} />
             </p>
+            <Score score={this.props.player.score} />
           </div>
       );
     }

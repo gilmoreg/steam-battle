@@ -48,7 +48,7 @@ const score = player => {
     // 1 point per hour played - counts double if played in the last two weeks
     //      might need to adjust
     // 1 point per achievement
-    return player.owned + (player.playtime/60) + (player.recent/60) + player.achievements;
+    return player.owned + Number.parseInt(player.playtime/60) + Number.parseInt(player.recent/60) + player.achievements;
 }
 
 export const getSteamID = id => {
