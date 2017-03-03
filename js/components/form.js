@@ -20,27 +20,26 @@ export class Form extends React.Component {
     }
 
     beginBattle(e) {
-        let players = [ {}, {} ];
-
         if(e) e.preventDefault();
         // Need to validate input if this is called first
         const p1id = Steam.getSteamID(ReactDOM.findDOMNode(this.player1input).value);
         const p2id = Steam.getSteamID(ReactDOM.findDOMNode(this.player2input).value);
-        
-        // We have both ids, let's start the fight
-        Promise.all([p1id,p2id]).then(ids => {
-            let calls = [];
-            Steam.getPlayerData(ids)
-                .then(data => {
-                    this.props.dispatch(actions.fillPlayers(data.players));
-                    //console.log('state players',this.props.players);
-                })
-                .catch(err => console.log(err));
 
-            Steam.calculateScore(ids)
-                .then(data => {
-                    //this.props.dispatch(actions.)
-                })
+        // We have both ids, let's start the fight
+        Promise.all([p1id,p2id]).then(players => {
+            players.forEach((id,index) => {
+                Steam.getPlayerProfile(id)
+                    .then(profile => {
+                        //dispatch
+                    })
+                    .catch(err => console.log(err));
+                Steam.calculateScore(id)
+                    .then(score => {
+                        console.log(score);
+                        //dispatch
+                    })
+                    .catch(err => console.log(err));
+            })
         })
         .catch(err => {
             console.log('beginBattle Promise.all fail', err);
@@ -66,30 +65,4 @@ export class Form extends React.Component {
         );
     } 
 }
-
-// This component really doesn't need these props but they are useful for testing
-const mapStateToProps = (state, props) => ({
-    players: state.players
-});
-
-export default connect(mapStateToProps)(Form);
-
-/*
-player = {
-    id,
-    winloss,
-    profile,
-    persona,
-    avatar,
-    score {
-        total,
-        games,
-        played,
-        playtime,
-        recent,
-        achievements,
-        rares,
-        superrares
-    }
-}
- */
+export default connect()(Form);
