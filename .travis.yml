@@ -1,5 +1,5 @@
-language: generic # don't install any environment
-
+language: node_js
+node_js: node
 script: bash ./deploy.sh
 env:
   global:
