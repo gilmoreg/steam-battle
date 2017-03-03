@@ -9,8 +9,8 @@ export default function Score(props) {
                     <li>Total Score: {props.score.total}</li>
                     <hr />
                     <li>Games Owned: {props.score.owned}</li>
-                    <li>Total Playtime: {props.score.playtime}</li>
-                    <li>Recent Playtime: {props.score.recent} </li>
+                    <li>Total Playtime: {Number.parseInt(props.score.playtime/60)} hours</li>
+                    <li>Recent Playtime: {Number.parseInt(props.score.recent/60)} hours</li>
                     <li>Achievements: {props.score.achievements}</li>
                 </ul>
             </div>
