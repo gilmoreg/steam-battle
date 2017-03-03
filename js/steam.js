@@ -2,6 +2,7 @@ require('babel-polyfill');
 const SteamID = require('steamid');
 import axios from 'axios';
 const baseAPIUrl = 'https://protected-dusk-95868.herokuapp.com';
+//const baseAPIUrl = 'http://localhost:9000'
 
 const getIdFromVanity = vanity => {
     const url = `${baseAPIUrl}/vanity/${vanity}`;
@@ -87,6 +88,7 @@ export const calculateScore = id => {
         achievements: 0,
         total: 0
     };
+    let achievementPromises = [];
     return new Promise((resolve,reject) => {
         getOwnedGames(id)
             .then(games => {
@@ -99,19 +101,23 @@ export const calculateScore = id => {
                         player.playtime += game.playtime_forever;
                         // Third score: # of minutes played in last two weeks
                         if(game.playtime_2weeks) player.recent += game.playtime_2weeks;
-
-                        getPlayerAchievements(id,game.appid)
-                            .then(achievements => {
-                                // Fourth score: number of achievements
-                                if(achievements) player.achievements += achievements;
-                                // Calculate and return score
-                                player.total = score(player);
-                                resolve(player);
-                            })
-                            .catch(err => reject(err));
+                        // Get all achievements
+                        achievementPromises.push(getPlayerAchievements(id,game.appid));
                     }
                 });
+                Promise.all(achievementPromises)
+                .then(achievements => {
+                    if(achievements) {
+                        achievements.forEach(a => {
+                            if(a) player.achievements += a;
+                        });
+                    }
+                    // Calculate and return score
+                    player.total = score(player);
+                    resolve(player);
+                })
+                .catch(err => reject(err));  
             })
-            .catch(err => reject(err));            
+            .catch(err => reject(err));
     })
 }

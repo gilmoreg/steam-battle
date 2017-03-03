@@ -2,17 +2,19 @@ require('babel-polyfill');
 import React from 'react';
 
 export default function Score(props) {
-    return (
-        <div className="player-score">
-            <ul class="score-list">
-              <li>Total Score: {props.score.total}</li>
-              <hr />
-              <li>Games Owned: {props.score.games}</li>
-              <li>Games Played: {props.score.played}</li>
-              <li>Total Playtime: {props.score.playtime}</li>
-              <li>Recent Playtime: {props.score.recent} </li>
-              <li>Achievements: {props.score.achievements}</li>
-            </ul>
-        </div>
-    );
+    if(props.score) {
+        return (
+            <div className="player-score">
+                <ul className="score-list">
+                    <li>Total Score: {props.score.total}</li>
+                    <hr />
+                    <li>Games Owned: {props.score.owned}</li>
+                    <li>Total Playtime: {props.score.playtime}</li>
+                    <li>Recent Playtime: {props.score.recent} </li>
+                    <li>Achievements: {props.score.achievements}</li>
+                </ul>
+            </div>
+        );
+    }
+    return ( <div></div> );
 }

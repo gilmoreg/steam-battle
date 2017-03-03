@@ -10,7 +10,6 @@ export class Player extends React.Component {
 
   render() {
     const {player} = this.props;
-    console.log('Player props',player);
     if(player.profile) {
       return ( 
           <div id={player.profile.steamid} className="player col-6 blue"> 
