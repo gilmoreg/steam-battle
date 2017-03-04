@@ -20,4 +20,3 @@ PlaceholderProfile.propTypes = {
   id: React.PropTypes.number.isRequired,
 };
 
-// img 184x184
