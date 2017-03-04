@@ -3,7 +3,7 @@ const initialRepositoryState = {
   winner: null,
 };
 
-export const steamBattleReducer = (state = initialRepositoryState, action) => {
+export default function steamBattleReducer(state = initialRepositoryState, action) {
   switch (action.type) {
     case 'FILL_PROFILE': {
       return Object.assign({}, state, {
@@ -33,4 +33,4 @@ export const steamBattleReducer = (state = initialRepositoryState, action) => {
     }
     default: return state;
   }
-};
+}
