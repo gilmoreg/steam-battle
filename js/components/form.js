@@ -49,11 +49,11 @@ export class Form extends React.Component {
     render() {
         return (
             <form>
-                <div className="col-3 blue">
+                <div className="col-3">
                     <label htmlFor="player1-input">Player 1</label>
                     <input type="text" id="player1-input" ref={(input) => { this.player1input = input; }} />
                 </div>
-                <div className="col-3 blue">
+                <div className="col-3">
                     <label htmlFor="player2-input">Player 2</label>
                     <input type="text" id="player2-input" ref={(input) => { this.player2input = input; }} />
                 </div>
