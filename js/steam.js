@@ -1,22 +1,22 @@
 import axios from 'axios';
+import * as actions from './actions';
 
 const SteamID = require('steamid');
 
 const baseAPIUrl = 'https://protected-dusk-95868.herokuapp.com';
 // const baseAPIUrl = 'http://localhost:9000'
 
-const getIdFromVanity = (vanity) => {
-  const url = `${baseAPIUrl}/vanity/${vanity}`;
-  return axios(url).then((response) => {
-    if (response.data) return response.data.steamid;
-    console.log('getIdFromVanity error: invalid response');
-    return null;
-  })
-  .catch((error) => {
-    console.log('getIdFromVanity error:', error);
-    return null;
+const getIdFromVanity = vanity =>
+  new Promise((resolve, reject) => {
+    const url = `${baseAPIUrl}/vanity/${vanity}`;
+    axios(url).then((response) => {
+      if (response.data) resolve(response.data.steamid);
+      reject('getIdFromVanity error: invalid response');
+    })
+    .catch((error) => {
+      reject(`getIdFromVanity error:, ${error}`);
+    });
   });
-};
 
 const getOwnedGames = id =>
   new Promise((resolve, reject) => {
@@ -47,7 +47,7 @@ const score = player =>
     player.owned + Number.parseInt(player.playtime / 60, 10) +
       Number.parseInt(player.recent / 60, 10) + player.achievements;
 
-export const getSteamID = id =>
+const getSteamID = id =>
     new Promise((resolve, reject) => {
       try {
         const sid = new SteamID(id);
@@ -60,7 +60,7 @@ export const getSteamID = id =>
       }
     });
 
-export const getPlayerProfile = id =>
+const getPlayerProfile = id =>
   new Promise((resolve, reject) => {
     const url = `${baseAPIUrl}/player/${id}`;
     axios(url).then((response) => {
@@ -70,7 +70,7 @@ export const getPlayerProfile = id =>
     .catch((error) => { reject(`getPlayerData error: ${error}`); });
   });
 
-export const calculateScore = (id) => {
+const calculateScore = (id) => {
   const player = {
     id,
     owned: 0,
@@ -112,3 +112,26 @@ export const calculateScore = (id) => {
         .catch(err => reject(err));
   });
 };
+
+export default function battle(p1id, p2id, dispatch) {
+  // We have both ids, let's start the fight
+  const p1SteamId = getSteamID(p1id);
+  const p2SteamId = getSteamID(p2id);
+  Promise.all([p1SteamId, p2SteamId]).then((players) => {
+    players.forEach((id, index) => {
+      getPlayerProfile(id)
+          .then((profile) => {
+            console.log('dispatching fillProfile');
+            dispatch(actions.fillProfile(index, profile));
+          })
+          .catch(err => console.log(err));
+      calculateScore(id)
+          .then((total) => {
+            console.log('dispatching setScore');
+            dispatch(actions.setScore(index, total));
+          })
+          .catch(err => console.log(err));
+    });
+  })
+  .catch(err => console.log(err));
+}

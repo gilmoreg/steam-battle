@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as Steam from '../steam';
-import * as actions from '../actions';
+import battle from '../steam';
 
 export class Form extends React.Component {
   constructor(props) {
@@ -21,34 +20,16 @@ export class Form extends React.Component {
   beginBattle(e) {
     if (e) e.preventDefault();
     // Need to validate input if this is called first
-    const p1id = Steam.getSteamID(this.player1input.value);
-    const p2id = Steam.getSteamID(this.player2input.value);
-
-    // We have both ids, let's start the fight
-    Promise.all([p1id, p2id]).then((players) => {
-      players.forEach((id, index) => {
-        Steam.getPlayerProfile(id)
-            .then((profile) => {
-              console.log('dispatching fillProfile');
-              this.props.dispatch(actions.fillProfile(index, profile));
-            })
-            .catch(err => console.log(err));
-        Steam.calculateScore(id)
-            .then((score) => {
-              console.log('dispatching setScore');
-              this.props.dispatch(actions.setScore(index, score));
-            })
-            .catch(err => console.log(err));
-      });
-    })
-    .catch((err) => {
-      console.log('beginBattle Promise.all fail', err);
-    });
+    const p1id = this.player1input.value;
+    const p2id = this.player2input.value;
+    // Call the Steam service
+    battle(p1id, p2id, this.props.dispatch);
+    this.context.router.transitionTo('/battle');
   }
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.beginBattle}>
         <div className="col-3">
           <label htmlFor="player1-input">Player 1</label>
           <input type="text" id="player1-input" ref={(input) => { this.player1input = input; }} />
@@ -68,6 +49,10 @@ export class Form extends React.Component {
 
 Form.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
+};
+
+Form.contextTypes = {
+  router: React.PropTypes.object,
 };
 
 export default connect()(Form);
