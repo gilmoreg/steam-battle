@@ -31,7 +31,7 @@ git config user.email "$COMMIT_AUTHOR_EMAIL"
 # The delta will show diffs between new and old versions.
 rm -rf *
 cp -r ../build/* .
-git rm .*
+rm .*
 git add -A
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 
