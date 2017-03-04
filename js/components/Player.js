@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Score from './Score';
+import Profile from './Profile';
 
 export function Player(props) {
   const { player } = props;
   if (player.profile) {
     return (
       <div id={`player${props.pid}`} className="player col-6 blue">
+        <Profile player={props.player} />
         <Score score={props.player.score} />
       </div>
     );
