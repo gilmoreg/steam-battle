@@ -1,4 +1,3 @@
-require('babel-polyfill');
 import React from 'react';
 import Form from './Form';
 import Player from './Player';
@@ -18,28 +17,3 @@ export default class SteamBattle extends React.Component {
         )
     }
 }
-
-
-/**
- * 
- *  <Player player={} />
-    <Player player={} />
- * 
-player = {
-    id,
-    winloss,
-    profile,
-    persona,
-    avatar,
-    score {
-        total,
-        games,
-        played,
-        playtime,
-        recent,
-        achievements,
-        rares,
-        superrares
-    }
-}
- */
