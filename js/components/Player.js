@@ -9,14 +9,18 @@ export function Player(props) {
   if (player && player.profile) {
     return (
       <div id={`player${props.pid}`} className="player col-6 blue">
-        <Profile player={player.profile} />
+        <Profile profile={player.profile} />
         <Score score={player.score} />
       </div>
     );
   }
-  return (<PlaceholderProfile id={props.pid} />);
+  return (
+    <div id={`player${props.pid}`} className="player col-6 blue">
+      <PlaceholderProfile id={props.pid} />
+    </div>
+  );
 }
-
+/*
 Player.defaultProps = {
   player: null,
 };
@@ -31,9 +35,9 @@ Player.propTypes = {
       recent: React.PropTypes.number.isRequired,
       achievements: React.PropTypes.number.isRequired,
       total: React.PropTypes.number.isRequired,
-    }).isRequired,
+    }),
   }),
-};
+};*/
 
 const mapStateToProps = (state, props) => ({
   player: state.players[props.pid],

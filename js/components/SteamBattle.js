@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from './Form';
-import { Player } from './Player';
+import Player from './Player';
 
 export default function SteamBattle() {
   return (
