@@ -68,7 +68,7 @@ export const getSteamID = id => {
     });
 }
 
-export const getPlayerProfile = id => { // todo rename to Profile
+export const getPlayerProfile = id => {
     return new Promise((resolve,reject) => {
         const url = `${baseAPIUrl}/player/${id}`;
         axios(url).then(response => {
