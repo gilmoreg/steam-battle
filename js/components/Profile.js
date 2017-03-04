@@ -19,3 +19,11 @@ export default function Profile(props) {
     </div>
   );
 }
+
+Profile.propTypes = {
+  profile: React.PropTypes.shape({
+    profileurl: React.PropTypes.string,
+    personaname: React.PropTypes.string,
+    avatarfull: React.PropTypes.string,
+  }).isRequired,
+};
