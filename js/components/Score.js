@@ -8,8 +8,8 @@ export default function Score(props) {
           <li>Total Score: {props.score.total}</li>
           <hr />
           <li>Games Owned: {props.score.owned}</li>
-          <li>Total Playtime: {Number.parseInt(props.score.playtime/60, 10)} hours</li>
-          <li>Recent Playtime: {Number.parseInt(props.score.recent/60, 10)} hours</li>
+          <li>Total Playtime: {Number.parseInt(props.score.playtime / 60, 10)} hours</li>
+          <li>Recent Playtime: {Number.parseInt(props.score.recent / 60, 10)} hours</li>
           <li>Achievements: {props.score.achievements}</li>
         </ul>
       </div>
@@ -17,3 +17,13 @@ export default function Score(props) {
   }
   return (<div />);
 }
+
+Score.propTypes = {
+  score: React.PropTypes.shape({
+    total: React.PropTypes.number,
+    owned: React.PropTypes.number,
+    playtime: React.PropTypes.number,
+    recent: React.PropTypes.number,
+    achievements: React.PropTypes.number,
+  }).isRequired,
+};
