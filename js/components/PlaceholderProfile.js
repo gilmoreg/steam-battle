@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function PlaceholderProfile(props) {
   return (
-    <div className="placeholder-profile" id={`player${props.id}`}>
+    <div className="profile" id={`player${props.id}`}>
       <h2>
         Player {props.id}
       </h2>

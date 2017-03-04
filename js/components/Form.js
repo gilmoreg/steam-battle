@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ReactDOM from 'react-dom';
 import * as Steam from '../steam';
 import * as actions from '../actions';
 
@@ -14,27 +13,29 @@ export class Form extends React.Component {
   randomBattle(e) {
     e.preventDefault();
     // Until I implement a random list to import
-    ReactDOM.findDOMNode(this.player1input).value = 'solitethos';
-    ReactDOM.findDOMNode(this.player2input).value = '76561198036993658';
+    this.player1input.value = 'solitethos';
+    this.player2input.value = '76561198036993658';
     this.beginBattle(e);
   }
 
   beginBattle(e) {
     if (e) e.preventDefault();
     // Need to validate input if this is called first
-    const p1id = Steam.getSteamID(ReactDOM.findDOMNode(this.player1input).value);
-    const p2id = Steam.getSteamID(ReactDOM.findDOMNode(this.player2input).value);
+    const p1id = Steam.getSteamID(this.player1input.value);
+    const p2id = Steam.getSteamID(this.player2input.value);
 
     // We have both ids, let's start the fight
     Promise.all([p1id, p2id]).then((players) => {
       players.forEach((id, index) => {
         Steam.getPlayerProfile(id)
             .then((profile) => {
+              console.log('dispatching fillProfile');
               this.props.dispatch(actions.fillProfile(index, profile));
             })
             .catch(err => console.log(err));
         Steam.calculateScore(id)
             .then((score) => {
+              console.log('dispatching setScore');
               this.props.dispatch(actions.setScore(index, score));
             })
             .catch(err => console.log(err));
@@ -64,4 +65,9 @@ export class Form extends React.Component {
     );
   }
 }
+
+Form.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+};
+
 export default connect()(Form);
