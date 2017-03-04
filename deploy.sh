@@ -30,7 +30,7 @@ git config user.email "$COMMIT_AUTHOR_EMAIL"
 # Commit the "changes", i.e. the new version.
 # The delta will show diffs between new and old versions.
 rm -rf *
-cp -r ../build
+cp -r ../build .
 git add -A
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 
