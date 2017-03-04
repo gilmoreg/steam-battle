@@ -20,7 +20,7 @@ export function Player(props) {
     </div>
   );
 }
-/*
+
 Player.defaultProps = {
   player: null,
 };
@@ -28,16 +28,16 @@ Player.defaultProps = {
 Player.propTypes = {
   pid: React.PropTypes.number.isRequired,
   player: React.PropTypes.shape({
-    id: React.PropTypes.number.isRequired,
+    id: React.PropTypes.number,
     score: React.PropTypes.shape({
-      owned: React.PropTypes.number.isRequired,
-      playtime: React.PropTypes.number.isRequired,
-      recent: React.PropTypes.number.isRequired,
-      achievements: React.PropTypes.number.isRequired,
-      total: React.PropTypes.number.isRequired,
+      owned: React.PropTypes.number,
+      playtime: React.PropTypes.number,
+      recent: React.PropTypes.number,
+      achievements: React.PropTypes.number,
+      total: React.PropTypes.number,
     }),
   }),
-};*/
+};
 
 const mapStateToProps = (state, props) => ({
   player: state.players[props.pid],
