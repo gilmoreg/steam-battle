@@ -8,19 +8,7 @@ export class Player extends React.Component {
     const { player } = this.props;
     if (player.profile) {
       return (
-        <div id={player.profile.steamid} className="player col-6 blue">
-          <h2>
-            <a href={player.profile.profileurl} title={player.profile.personaname}>
-              {player.profile.personaname}
-            </a>
-          </h2>
-          <p>
-            <img
-              src={player.profile.avatarfull}
-              alt={player.profile.personaname}
-              title={player.profile.personaname}
-            />
-          </p>
+        <div id={`player${this.props.pid}`} className="player col-6 blue">
           <Score score={this.props.player.score} />
         </div>
       );
