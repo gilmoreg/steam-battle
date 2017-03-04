@@ -14,10 +14,6 @@ export function Player(props) {
   return (<div />);
 }
 
-const mapStateToProps = (state, props) => ({
-  player: state.players[props.pid],
-});
-
 Player.propTypes = {
   pid: React.PropTypes.number.isRequired,
   player: React.PropTypes.shape({
@@ -31,5 +27,9 @@ Player.propTypes = {
     }).isRequired,
   }).isRequired,
 };
+
+const mapStateToProps = (state, props) => ({
+  player: state.players[props.pid],
+});
 
 export default connect(mapStateToProps)(Player);
