@@ -1,7 +1,7 @@
 require('babel-polyfill');
 import React from 'react';
-import Form from './form';
-import Player from './player';
+import Form from './Form';
+import Player from './Player';
 
 export default class SteamBattle extends React.Component {
     constructor(props) {

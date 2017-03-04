@@ -35,23 +35,3 @@ export const steamBattleReducer = (state=initialRepositoryState, action) => {
         default: return state;
     }
 }
-
-/**
-player = {
-    id,
-    winloss,
-    profile,
-    persona,
-    avatar,
-    score {
-        total,
-        games,
-        played,
-        playtime,
-        recent,
-        achievements,
-        rares,
-        superrares
-    }
-}
- */
