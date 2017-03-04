@@ -18,6 +18,16 @@ export default function Score(props) {
   return (<div />);
 }
 
+Score.defaultProps = {
+  score: {
+    total: 0,
+    owned: 0,
+    playtime: 0,
+    recent: 0,
+    achievements: 0,
+  },
+};
+
 Score.propTypes = {
   score: React.PropTypes.shape({
     total: React.PropTypes.number,
@@ -25,5 +35,5 @@ Score.propTypes = {
     playtime: React.PropTypes.number,
     recent: React.PropTypes.number,
     achievements: React.PropTypes.number,
-  }).isRequired,
+  }),
 };
