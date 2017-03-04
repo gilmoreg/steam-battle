@@ -41,7 +41,7 @@ export class Form extends React.Component {
       });
     })
     .catch((err) => {
-        console.log('beginBattle Promise.all fail', err);
+      console.log('beginBattle Promise.all fail', err);
     });
   }
 

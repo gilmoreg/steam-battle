@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Score from './Score';
 
 export class Player extends React.Component {
@@ -8,8 +8,8 @@ export class Player extends React.Component {
   }
 
   render() {
-    const {player} = this.props;
-    if(player.profile) {
+    const { player } = this.props;
+    if (player.profile) {
       return ( 
           <div id={player.profile.steamid} className="player col-6 blue"> 
             <h2><a href={player.profile.profileurl} title={player.profile.personaname} target="_blank">{player.profile.personaname}</a></h2>
