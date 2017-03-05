@@ -4,6 +4,7 @@ import Player from './Player';
 export default function Battle() {
   const retry = (e) => {
     e.preventDefault();
+    window.location.replace('#/');
     // this.context.router.transitionTo('/');
   };
 

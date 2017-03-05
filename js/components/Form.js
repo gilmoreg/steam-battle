@@ -23,6 +23,7 @@ export class Form extends React.Component {
     const p1id = this.player1input.value;
     const p2id = this.player2input.value;
     this.props.dispatch(actions.battle([p1id, p2id]));
+    window.location.replace('#/battle');
   }
 
   render() {
