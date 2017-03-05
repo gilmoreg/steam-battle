@@ -1,6 +1,7 @@
 const initialRepositoryState = {
   players: [{}, {}],
   winner: null,
+  error: null,
 };
 
 export default function steamBattleReducer(state = initialRepositoryState, action) {
@@ -30,6 +31,10 @@ export default function steamBattleReducer(state = initialRepositoryState, actio
           return p;
         }),
       });
+    }
+    case 'ERROR': {
+      console.log(action.msg);
+      return Object.assign({}, state, { error: action.msg });
     }
     default: return state;
   }

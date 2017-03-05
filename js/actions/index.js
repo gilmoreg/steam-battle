@@ -14,27 +14,46 @@ export const setScore = (player, score) => ({
   score,
 });
 
+export const ERROR = 'ERROR';
+export const error = msg => ({
+  type: ERROR,
+  msg,
+});
+
 export const BATTLE = 'BATTLE';
 export const battle = ids => (dispatch) => {
   Promise.all([Steam.getSteamID(ids[0]), Steam.getSteamID(ids[1])])
     .then((sids) => {
+      if (!sids[0] || !sids[1]) {
+        const errorMsg = 'Error: at least one of the Steam IDs is invalid.';
+        dispatch(error(errorMsg));
+        throw new Error(errorMsg);
+      }
       sids.forEach((sid, index) => {
         Steam.getPlayerProfile(sid)
           .then((profile) => {
-            console.log('dispatching fillProfile');
+            // console.log('dispatching fillProfile', sid, profile);
             dispatch(fillProfile(index, profile));
           })
-          .catch((err) => { console.log(err); });
+          .catch((err) => {
+            dispatch(error(err));
+            throw new Error(err);
+          });
         Steam.calculateScore(sid)
           .then((score) => {
-            console.log('dispatching setScore');
+            // console.log('dispatching setScore', sid, score);
             dispatch(setScore(index, score));
           })
-          .catch((err) => { console.log(err); });
+          .catch((err) => {
+            dispatch(error(err));
+            throw new Error(err);
+          });
       });
     })
-    // TODO: see what happens with invalid Steam IDs and prevent the app from continuing
-    .catch((err) => { console.log(err); });
+    .catch((err) => {
+      dispatch(error(err));
+      throw new Error(err);
+    });
 };
 
 export const DECLARE_WINNER = 'DECLARE_WINNER';
