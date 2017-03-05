@@ -26,6 +26,24 @@
     .col-12 {width: 100%;}
 }
 
+body {
+  background-color: #1b2838;
+  color: #c6d4df;
+}
+
+header {
+  background-color: #171a21;
+}
+
+header h1 {
+  margin-top: 0px;
+  padding-top: 20px;
+}
+
+header p {
+  padding-bottom: 20px;
+}
+
 header, form {
     text-align: center;
 }
