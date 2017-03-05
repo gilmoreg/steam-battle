@@ -8,7 +8,7 @@ export default function Battle() {
   };
 
   return (
-    <div>
+    <div className="battle col-12">
       <Player pid={0} />
       <Player pid={1} />
       <button onClick={retry}>Battle again!</button>

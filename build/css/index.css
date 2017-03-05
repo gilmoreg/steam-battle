@@ -49,18 +49,6 @@ header, form {
     text-align: center;
 }
 
-.black {
-  outline: 1px solid black;
-}
-
-.blue {
-  outline: 1px solid blue;
-}
-
-.row {
-  width: 100%;
-}
-
 label, input, button {
   display:block;
   margin: 0 auto;
@@ -76,9 +64,19 @@ button {
   margin: 10px auto;
 }
 
+.battle {
+  text-align: center;
+}
+
 .player {
+  background-color: #171a21;
   text-align: center;
   padding: 25px;
+  margin: 10px;
+}
+
+.profile a, .profile a:visited {
+  color: inherit;
 }
 
 .playerscore {
@@ -99,4 +97,18 @@ footer {
 
 footer p {
     margin-bottom: 0px;
+}
+
+
+
+.black {
+  outline: 1px solid black;
+}
+
+.blue {
+  outline: 1px solid blue;
+}
+
+.row {
+  width: 100%;
 }

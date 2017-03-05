@@ -5,7 +5,12 @@ export default function Profile(props) {
   return (
     <div className="profile" id="{this.props.id}">
       <h2>
-        <a href={profile.profileurl} title={profile.personaname}>
+        <a
+          href={profile.profileurl}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={profile.personaname}
+        >
           {profile.personaname}
         </a>
       </h2>

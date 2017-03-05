@@ -8,14 +8,14 @@ export function Player(props) {
   const { player } = props;
   if (player && player.profile) {
     return (
-      <div id={`player${props.pid}`} className="player col-6 blue">
+      <div id={`player${props.pid}`} className="player col-3">
         <Profile profile={player.profile} />
         <Score score={player.score} />
       </div>
     );
   }
   return (
-    <div id={`player${props.pid}`} className="player col-6 blue">
+    <div id={`player${props.pid}`} className="player col-3">
       <PlaceholderProfile id={props.pid} />
     </div>
   );
