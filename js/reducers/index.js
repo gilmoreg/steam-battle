@@ -34,7 +34,7 @@ export default function steamBattleReducer(state = initialRepositoryState, actio
     }
     case 'ERROR': {
       console.log(action.msg);
-      return Object.assign({}, state, { error: action.msg });
+      return Object.assign({}, state, { error: { msg: action.msg, player: action.player } });
     }
     default: return state;
   }

@@ -40,17 +40,33 @@ export class Form extends React.Component {
           <button className="button" onClick={this.beginBattle}>Fight</button>
           <button className="button" onClick={this.randomBattle}>Random</button>
         </div>
+        <span>
+          {this.props.error ? this.props.error.msg : ''}
+          {this.props.error ? ` Player ${this.props.error.player}` : ''}
+        </span>;
       </form>
     );
   }
 }
 
+Form.defaultProps = {
+  error: null,
+};
+
 Form.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
+  error: React.PropTypes.shape({
+    msg: React.PropTypes.string,
+    player: React.PropTypes.number,
+  }),
 };
 
 Form.contextTypes = {
   router: React.PropTypes.object,
 };
 
-export default connect()(Form);
+const mapStateToProps = state => ({
+  error: state.error,
+});
+
+export default connect(mapStateToProps)(Form);

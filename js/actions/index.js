@@ -15,9 +15,10 @@ export const setScore = (player, score) => ({
 });
 
 export const ERROR = 'ERROR';
-export const error = msg => ({
+export const error = (msg, player) => ({
   type: ERROR,
   msg,
+  player,
 });
 
 export const BATTLE = 'BATTLE';
@@ -26,7 +27,7 @@ export const battle = ids => (dispatch) => {
     .then((sids) => {
       if (!sids[0] || !sids[1]) {
         const errorMsg = 'Error: at least one of the Steam IDs is invalid.';
-        dispatch(error(errorMsg));
+        dispatch(error(errorMsg, !sids[0] || !sids[1]));
         throw new Error(errorMsg);
       }
       sids.forEach((sid, index) => {
@@ -36,7 +37,7 @@ export const battle = ids => (dispatch) => {
             dispatch(fillProfile(index, profile));
           })
           .catch((err) => {
-            dispatch(error(err));
+            dispatch(error(err, index));
             throw new Error(err);
           });
         Steam.calculateScore(sid)
@@ -45,13 +46,13 @@ export const battle = ids => (dispatch) => {
             dispatch(setScore(index, score));
           })
           .catch((err) => {
-            dispatch(error(err));
+            dispatch(error(err, index));
             throw new Error(err);
           });
       });
     })
     .catch((err) => {
-      dispatch(error(err));
+      dispatch(error(err, null));
       throw new Error(err);
     });
 };
