@@ -43,7 +43,7 @@ export class Form extends React.Component {
         <span>
           {this.props.error ? this.props.error.msg : ''}
           {this.props.error ? ` Player ${this.props.error.player}` : ''}
-        </span>;
+        </span>
       </form>
     );
   }

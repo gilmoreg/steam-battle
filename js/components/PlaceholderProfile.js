@@ -4,7 +4,7 @@ export default function PlaceholderProfile(props) {
   return (
     <div className="profile" id={`player${props.id}`}>
       <h2>
-        Player {props.id}
+        Player {props.id + 1}
       </h2>
       <p>
         <img
