@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import battle from '../steam';
+import * as actions from '../actions';
 
 export class Form extends React.Component {
   constructor(props) {
@@ -22,8 +22,7 @@ export class Form extends React.Component {
     // Need to validate input if this is called first
     const p1id = this.player1input.value;
     const p2id = this.player2input.value;
-    // Call the Steam service
-    battle(p1id, p2id, this.props.dispatch);
+    this.props.dispatch(actions.battle(p1id, p2id));
   }
 
   render() {

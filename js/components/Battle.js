@@ -4,7 +4,7 @@ import Player from './Player';
 export default function Battle() {
   const retry = (e) => {
     e.preventDefault();
-    this.context.router.transitionTo('/');
+    // this.context.router.transitionTo('/');
   };
 
   return (
@@ -15,7 +15,8 @@ export default function Battle() {
     </div>
   );
 }
-
+/*
 Battle.contextTypes = {
   router: React.PropTypes.object,
 };
+*/

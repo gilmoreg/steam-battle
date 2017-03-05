@@ -47,20 +47,7 @@ const score = player =>
     player.owned + Number.parseInt(player.playtime / 60, 10) +
       Number.parseInt(player.recent / 60, 10) + player.achievements;
 
-const getSteamID = id =>
-    new Promise((resolve, reject) => {
-      try {
-        const sid = new SteamID(id);
-        resolve(sid.getSteamID64());
-      } catch (error) {
-        // If SteamID threw an error, this might be a vanity URL
-        getIdFromVanity(id)
-            .then(sid => resolve(sid))
-            .catch(err => reject(`getSteamID ${error} ${err}`));
-      }
-    });
-
-const getPlayerProfile = id =>
+export const getPlayerProfile = id =>
   new Promise((resolve, reject) => {
     const url = `${baseAPIUrl}/player/${id}`;
     axios(url).then((response) => {
@@ -70,7 +57,7 @@ const getPlayerProfile = id =>
     .catch((error) => { reject(`getPlayerData error: ${error}`); });
   });
 
-const calculateScore = (id) => {
+export const calculateScore = (id) => {
   const player = {
     id,
     owned: 0,
@@ -113,25 +100,15 @@ const calculateScore = (id) => {
   });
 };
 
-export default function battle(p1id, p2id, dispatch) {
-  // We have both ids, let's start the fight
-  const p1SteamId = getSteamID(p1id);
-  const p2SteamId = getSteamID(p2id);
-  Promise.all([p1SteamId, p2SteamId]).then((players) => {
-    players.forEach((id, index) => {
-      getPlayerProfile(id)
-          .then((profile) => {
-            console.log('dispatching fillProfile');
-            dispatch(actions.fillProfile(index, profile));
-          })
-          .catch(err => console.log(err));
-      calculateScore(id)
-          .then((total) => {
-            console.log('dispatching setScore');
-            dispatch(actions.setScore(index, total));
-          })
-          .catch(err => console.log(err));
+export const getSteamID = id =>
+    new Promise((resolve, reject) => {
+      try {
+        const sid = new SteamID(id);
+        resolve(sid.getSteamID64());
+      } catch (error) {
+        // If SteamID threw an error, this might be a vanity URL
+        getIdFromVanity(id)
+            .then(sid => resolve(sid))
+            .catch(err => reject(`getSteamID ${error} ${err}`));
+      }
     });
-  })
-  .catch(err => console.log(err));
-}
