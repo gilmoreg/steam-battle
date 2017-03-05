@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import store from './store';
-import Root from './components/Root';
+import { Router, Route, hashHistory } from 'react-router';
+import SteamBattle from './components/SteamBattle';
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Provider store={store}>
-      <Root />
-    </Provider>,
+    <Router history={hashHistory}>
+      <Route path="/" component={SteamBattle} />
+    </Router>,
     document.getElementById('app'),
   );
 });

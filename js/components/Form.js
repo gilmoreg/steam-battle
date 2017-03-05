@@ -24,7 +24,6 @@ export class Form extends React.Component {
     const p2id = this.player2input.value;
     // Call the Steam service
     battle(p1id, p2id, this.props.dispatch);
-    this.context.router.transitionTo('/battle');
   }
 
   render() {
