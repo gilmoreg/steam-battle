@@ -14,7 +14,39 @@ describe('SteamBattle component', () => {
     const renderer = TestUtils.createRenderer();
     renderer.render(<SteamBattle />);
     const result = renderer.getRenderOutput();
-    result.type.should.equal('Provider');
+    result.props.store.should.exist;
+    // TODO what else to test?
   });
 });
 
+/*
+console.log('SteamBattle', result);
+SteamBattle { '$$typeof': Symbol(react.element),     
+  type:                                              
+   { [Function: Provider]                            
+     propTypes:                                      
+      { store: [Function: bound checkType],          
+        children: [Function: bound checkType] },     
+     childContextTypes: { store: [Function: bound che
+ckType] } },                                         
+  key: null,                                         
+  ref: null,                                         
+  props:                                             
+   { store:                                          
+      { dispatch: [Function],                        
+        subscribe: [Function: subscribe],            
+        getState: [Function: getState],              
+        replaceReducer: [Function: replaceReducer] },
+                                                     
+     children:                                       
+      { '$$typeof': Symbol(react.element),           
+        type: [Object],                              
+        key: null,                                   
+        ref: null,                                   
+        props: {},                                   
+        _owner: null,                                
+        _store: {} } },                              
+  _owner: null,                                      
+  _store: {} }                                       
+
+*/

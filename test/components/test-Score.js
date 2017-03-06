@@ -24,12 +24,14 @@ describe('Score component', () => {
     result.props.className.should.equal('player-score');
     // TODO What else should I test?
   });
-  it('should render a component without props', () => {
+  it('should render a component with default props', () => {
     const renderer = TestUtils.createRenderer();
     renderer.render(<Score />);
     const result = renderer.getRenderOutput();
+    console.log('no props', result);
     result.type.should.equal('div');
-    result.props.children.should.be.undefined;
+    result.props.className.should.equal('player-score');
+    result.props.children.type.should.equal('ul');
   });
 });
 
