@@ -26,4 +26,10 @@ describe('Steam functions', () => {
   it('checkID should fail on a known bad id', () =>
     Steam.checkID('aaaa').should.be.rejected
   );
+  it('getPlayer should succeed on a known good id', () =>
+    Steam.getPlayer('76561198007908897').should.fulfill
+  );
+  it('getPlayer should fail on a known bad id', () =>
+    Steam.getPlayer('aaaa').should.be.rejected
+  );
 });
