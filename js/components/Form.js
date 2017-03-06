@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import { getRandomIDs } from '../steam';
 
 export class Form extends React.Component {
   constructor(props) {
@@ -11,17 +12,22 @@ export class Form extends React.Component {
 
   randomBattle(e) {
     e.preventDefault();
-    // Until I implement a random list to import
-    this.player1input.value = 'solitethos';
-    this.player2input.value = '76561198036993658';
-    this.beginBattle(e);
+    const ids = getRandomIDs();
+    this.beginBattle(e, ids);
   }
 
-  beginBattle(e) {
+  beginBattle(e, ids) {
     if (e) e.preventDefault();
-    // Need to validate input if this is called first
-    const p1id = this.player1input.value;
-    const p2id = this.player2input.value;
+    let p1id;
+    let p2id;
+    if (ids) {
+      p1id = ids[0];
+      p2id = ids[1];
+    } else {
+      // Need to validate input if this is called first
+      p1id = this.player1input.value;
+      p2id = this.player2input.value;
+    }
     this.props.dispatch(actions.battle([p1id, p2id]));
     window.location.replace('#/battle');
   }
