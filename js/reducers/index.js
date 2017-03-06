@@ -10,7 +10,6 @@ export default function steamBattleReducer(state = initialRepositoryState, actio
       return Object.assign({}, state, {
         players: state.players.map((p, index) => {
           if (action.id === index) {
-            console.log('action.player', action.player);
             return action.player;
           }
           return p;
