@@ -75,8 +75,14 @@ button {
   margin: 10px;
 }
 
-.profile a, .profile a:visited {
+a, a:visited {
   color: inherit;
+}
+
+.profile h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .playerscore {
@@ -93,13 +99,16 @@ button {
 footer {
     font-size: 9px;
     text-align: center;
+    position: fixed;
+    width: 100%;
+    padding: 15px 0;
+    bottom: 0;
+    background-color: #171a21;
 }
 
 footer p {
     margin-bottom: 0px;
 }
-
-
 
 .black {
   outline: 1px solid black;

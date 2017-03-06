@@ -18,8 +18,8 @@ export class Form extends React.Component {
 
   beginBattle(e, ids) {
     if (e) e.preventDefault();
-    const p1id = ids[0] || this.player1input.value;
-    const p2id = ids[1] || this.player2input.value;
+    const p1id = ids[0] || this.player1input.value.trim();
+    const p2id = ids[1] || this.player2input.value.trim();
     this.props.dispatch(actions.battle([p1id, p2id]));
     window.location.replace('#/battle');
   }
