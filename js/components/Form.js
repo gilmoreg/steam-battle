@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import { getRandomIDs } from '../steam';
+import { getRandomIDs, checkID } from '../steam';
 
 export class Form extends React.Component {
   constructor(props) {
@@ -25,6 +25,10 @@ export class Form extends React.Component {
   }
 
   render() {
+    checkID('76561198007908897')
+      .then(id => console.log('id', id))
+      .catch(err => console.log('err', err));
+
     return (
       <form onSubmit={this.beginBattle}>
         <div className="col-3">

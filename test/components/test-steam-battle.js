@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import chai from 'chai';
 const should = chai.should();
@@ -11,4 +11,5 @@ describe('SteamBattle component', function() {
         const result = renderer.getRenderOutput();
         result.props.className.should.equal('steam-battle');
     })
-});
+}); */
+
