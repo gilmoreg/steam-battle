@@ -10,7 +10,6 @@ export default function Score(props) {
           <li>Games Owned: {props.score.owned}</li>
           <li>Total Playtime: {Number.parseInt(props.score.playtime / 60, 10)} hours</li>
           <li>Recent Playtime: {Number.parseInt(props.score.recent / 60, 10)} hours</li>
-          <li>Achievements: {props.score.achievements}</li>
         </ul>
       </div>
     );
@@ -24,7 +23,6 @@ Score.defaultProps = {
     owned: 0,
     playtime: 0,
     recent: 0,
-    achievements: 0,
   },
 };
 
@@ -34,6 +32,5 @@ Score.propTypes = {
     owned: React.PropTypes.number,
     playtime: React.PropTypes.number,
     recent: React.PropTypes.number,
-    achievements: React.PropTypes.number,
   }),
 };
