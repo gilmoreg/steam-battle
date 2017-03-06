@@ -11,8 +11,6 @@
     },
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        // For redux chrome dev tools
-        "no-underscore-dangle": "warn",
         // For redux connect()
         "import/no-named-as-default": 0
     }
