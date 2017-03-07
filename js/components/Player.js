@@ -9,7 +9,7 @@ export function Player(props) {
   if (player && player.profile) {
     return (
       <div id={`player${props.pid}`} className="player col-3">
-        <Profile profile={player.profile} />
+        <Profile profile={player.profile} id={props.pid} />
         <Score score={player.score} />
       </div>
     );
@@ -28,12 +28,16 @@ Player.defaultProps = {
 Player.propTypes = {
   pid: React.PropTypes.number.isRequired,
   player: React.PropTypes.shape({
-    id: React.PropTypes.number,
+    id: React.PropTypes.string,
+    profile: React.PropTypes.shape({
+      profileurl: React.PropTypes.string,
+      personaname: React.PropTypes.string,
+      avatarfull: React.PropTypes.string,
+    }),
     score: React.PropTypes.shape({
       owned: React.PropTypes.number,
       playtime: React.PropTypes.number,
       recent: React.PropTypes.number,
-      achievements: React.PropTypes.number,
       total: React.PropTypes.number,
     }),
   }),

@@ -28,10 +28,29 @@ describe('Score component', () => {
     const renderer = TestUtils.createRenderer();
     renderer.render(<Score />);
     const result = renderer.getRenderOutput();
-    console.log('no props', result);
     result.type.should.equal('div');
     result.props.className.should.equal('player-score');
     result.props.children.type.should.equal('ul');
   });
 });
 
+/*
+
+no props { '$$typeof': Symbol(react.element),
+  type: 'div',
+  key: null,
+  ref: null,
+  props:
+   { className: 'player-score',
+     children:
+      { '$$typeof': Symbol(react.element),
+        type: 'ul',
+        key: null,
+        ref: null,
+        props: [Object],
+        _owner: null,
+        _store: {} } },
+  _owner: null,
+  _store: {} }
+
+*/

@@ -3,7 +3,7 @@ import React from 'react';
 export default function Profile(props) {
   const { profile } = props;
   return (
-    <div className="profile" id="{this.props.id}">
+    <div className="profile">
       <h2>
         <a
           href={profile.profileurl}
