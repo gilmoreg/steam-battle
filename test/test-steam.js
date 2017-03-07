@@ -4,13 +4,51 @@
 /* eslint-disable no-undef */
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
-const axios = require('axios');
+const moxios = require('moxios');
 const Steam = require('../js/steam');
 
 const should = chai.should();
 chai.use(chaiAsPromised);
 
+const fakeCheckIdGoodResult = {
+  steamid: '76561198007908897',
+};
+
+const fakeCheckIdBadResult = {
+// Returns nothing - is that what I want?
+};
+
+const fakeGetPlayerGoodResult = {
+  player: {
+    profile: {
+      steamid: '76561198007908897',
+      personaname: 'test',
+      profileurl: 'test',
+      avatarfull: 'test',
+    },
+    score: {
+      steamid: '76561198007908897',
+      owned: 18,
+      playtime: 22305,
+      recent: 162,
+      total: 391
+    }
+  }
+};
+
+const fakeGetPlayerBadResult = {
+
+};
+
 describe('Steam functions', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
+
   it('getRandomIDs should return two unique random numbers', () => {
     const ids = Steam.getRandomIDs();
     ids.should.be.an.array;
