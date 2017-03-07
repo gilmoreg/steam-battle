@@ -32,12 +32,12 @@ const fakeGetPlayerGoodResult = {
       playtime: 22305,
       recent: 162,
       total: 391
-    }
-  }
+    },
+  },
 };
 
 const fakeGetPlayerBadResult = {
-
+  error: 'test',
 };
 
 describe('Steam functions', () => {
@@ -55,9 +55,20 @@ describe('Steam functions', () => {
     ids.length.should.equal(2);
     ids[0].should.not.eql(ids[1]);
   });
-  it('checkID should validate a known good id', () =>
-    Steam.checkID('76561198007908897').should.fulfill
-  );
+  it('checkID should validate a known good id', () => {
+    moxios.mockRequest(/.*(checkid).*/, {
+      status: 200,
+      responseText: JSON.stringify(fakeCheckIdGoodResult),
+    });
+    Steam.checkID('76561198007908897')
+      .then((response) => {
+        response.should.equal('76561198007908897');
+      })
+      .catch((err) => {
+        console.log(err);
+        false.should.equal(true);
+      });
+  }); /*
   it('checkID should validate a known good vanity url', () =>
     Steam.checkID('solitethos').should.fulfill
   );
@@ -69,5 +80,5 @@ describe('Steam functions', () => {
   );
   it('getPlayer should fail on a known bad id', () =>
     Steam.getPlayer('aaaa').should.be.rejected
-  );
+  ); */
 });
