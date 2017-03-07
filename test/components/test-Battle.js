@@ -4,7 +4,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import chai from 'chai';
 import Battle from '../../js/components/Battle';
 import { Player } from '../../js/components/Player';
