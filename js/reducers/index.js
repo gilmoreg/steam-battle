@@ -1,10 +1,10 @@
-const initialRepositoryState = {
+const initialState = {
   players: [{}, {}],
   winner: null,
   error: null,
 };
 
-export default function steamBattleReducer(state = initialRepositoryState, action) {
+export default function steamBattleReducer(state = initialState, action) {
   switch (action.type) {
     case 'FILL_PLAYER': {
       return Object.assign({}, state, {

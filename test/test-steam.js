@@ -22,17 +22,13 @@ const fakePlayer = {
       playtime: 22305,
       recent: 162,
       total: 391
-    }
-  }
+    },
+  },
 };
 
 describe('Steam functions', () => {
-  beforeEach(() => {
-    moxios.install();
-  });
-  afterEach(() => {
-    moxios.uninstall();
-  });
+  beforeEach(() => moxios.install());
+  afterEach(() => moxios.uninstall());
 
   it('getRandomIDs should return two unique random numbers', () => {
     const ids = Steam.getRandomIDs();
