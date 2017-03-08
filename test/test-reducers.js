@@ -46,7 +46,7 @@ describe('Reducers', () => {
       .should.equal.expectedStore;
   });
 
-  it('should declar a winner on DECLARE_WINNER', () => {
+  it('should declare a winner on DECLARE_WINNER', () => {
     const expectedStore = {
       players: [{}, {}],
       winner: 0,
