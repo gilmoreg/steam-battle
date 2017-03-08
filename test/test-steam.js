@@ -3,42 +3,12 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable no-undef */
 const chai = require('chai');
-const chaiAsPromised = require('chai-as-promised');
 const moxios = require('moxios');
 const Steam = require('../js/steam');
+const fakes = require('./fakes');
 
 const should = chai.should();
-chai.use(chaiAsPromised);
-
-const fakeCheckIdGoodResult = {
-  steamid: '76561198007908897',
-};
-
-const fakeCheckIdBadResult = {
-// Returns nothing - is that what I want?
-};
-
-const fakeGetPlayerGoodResult = {
-  player: {
-    profile: {
-      steamid: '76561198007908897',
-      personaname: 'test',
-      profileurl: 'test',
-      avatarfull: 'test',
-    },
-    score: {
-      steamid: '76561198007908897',
-      owned: 18,
-      playtime: 22305,
-      recent: 162,
-      total: 391
-    },
-  },
-};
-
-const fakeGetPlayerBadResult = {
-  error: 'test',
-};
+chai.use(require('chai-as-promised'));
 
 describe('Steam functions', () => {
   beforeEach(() => {
@@ -48,33 +18,45 @@ describe('Steam functions', () => {
     moxios.uninstall();
   });
 
-
   it('getRandomIDs should return two unique random numbers', () => {
     const ids = Steam.getRandomIDs();
     ids.should.be.an.array;
     ids.length.should.equal(2);
     ids[0].should.not.eql(ids[1]);
   });
-  it('checkID should validate a known good id', () => {
-    moxios.mockRequest(/.*(checkid).*/, {
+  it('checkID should validate a known good id', (done) => {
+    moxios.stubRequest(/.*(checkid).*/, {
       status: 200,
-      responseText: JSON.stringify(fakeCheckIdGoodResult),
+      responseText: JSON.stringify(fakes.checkIdGoodResult),
     });
     Steam.checkID('76561198007908897')
       .then((response) => {
         response.should.equal('76561198007908897');
+        done();
       })
-      .catch((err) => {
-        console.log(err);
-        false.should.equal(true);
-      });
-  }); /*
-  it('checkID should validate a known good vanity url', () =>
-    Steam.checkID('solitethos').should.fulfill
-  );
-  it('checkID should fail on a known bad id', () =>
-    Steam.checkID('aaaa').should.be.rejected
-  );
+      .catch(err => should.fail(err));
+  });
+
+  it('checkID should validate a known good vanity url', (done) => {
+    moxios.stubRequest(/.*(checkid).*/, {
+      status: 200,
+      responseText: JSON.stringify(fakes.checkIdGoodResult),
+    });
+    Steam.checkID('solitethos')
+      .then((response) => {
+        response.should.equal('76561198007908897');
+        done();
+      })
+      .catch(err => should.fail(err));
+  });
+
+  it('checkID should fail on a known bad id', () => {
+    moxios.stubRequest(/.*(checkid).*/, {
+      status: 200,
+      responseText: JSON.stringify({}),
+    });
+    return Steam.checkID('aazzzaasff').should.be.rejected;
+  });   /*
   it('getPlayer should succeed on a known good id', () =>
     Steam.getPlayer('76561198007908897').should.fulfill
   );
