@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const ENDPOINT = 'https://protected-dusk-95868.herokuapp.com';
-// const baseAPIUrl = 'http://localhost:9000'
+// const ENDPOINT = 'http://localhost:9000';
+
 const steamIDs = [
   '76561198004854956',
   '76561198006920295',

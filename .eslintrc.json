@@ -3,7 +3,8 @@
     "plugins": [
         "react",
         "jsx-a11y",
-        "import"
+        "import",
+        "promise"
     ],
     "env": {
         "browser": true,
