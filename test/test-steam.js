@@ -9,21 +9,16 @@ const Steam = require('../js/steam');
 const should = chai.should();
 chai.use(require('chai-as-promised'));
 
-process.on('unhandledRejection', (reason, p) => {
-  console.error('unhandledRejection', p, reason);
-  process.exit(1);
-});
-
 const fakeProfile = {
   player: {
     profile: {
-      steamid: '76561198007908897',
+      steamid: 'test',
       personaname: 'test',
       profileurl: 'test',
       avatarfull: 'test',
     },
     score: {
-      steamid: '76561198007908897',
+      steamid: 'test',
       owned: 18,
       playtime: 22305,
       recent: 162,
@@ -50,11 +45,11 @@ describe('Steam functions', () => {
   it('checkID should validate a known good id', (done) => {
     moxios.stubRequest(/.*(checkid).*/, {
       status: 200,
-      responseText: JSON.stringify({ steamid: '76561198007908897' }),
+      responseText: JSON.stringify({ steamid: 'test' }),
     });
-    Steam.checkID('76561198007908897')
+    Steam.checkID('test')
       .then((response) => {
-        response.should.equal('76561198007908897');
+        response.should.equal('test');
         done();
       })
       .catch(err => should.fail(err));
@@ -63,11 +58,11 @@ describe('Steam functions', () => {
   it('checkID should validate a known good vanity url', (done) => {
     moxios.stubRequest(/.*(checkid).*/, {
       status: 200,
-      responseText: JSON.stringify({ steamid: '76561198007908897' }),
+      responseText: JSON.stringify({ steamid: 'test' }),
     });
-    Steam.checkID('solitethos')
+    Steam.checkID('test')
       .then((response) => {
-        response.should.equal('76561198007908897');
+        response.should.equal('test');
         done();
       })
       .catch(err => should.fail(err));
@@ -78,7 +73,7 @@ describe('Steam functions', () => {
       status: 200,
       responseText: JSON.stringify({}),
     });
-    Steam.checkID('aazzzaasff')
+    Steam.checkID('test')
       .then(() => {
         should.fail();
         done();
@@ -94,7 +89,7 @@ describe('Steam functions', () => {
       status: 200,
       responseText: JSON.stringify(fakeProfile),
     });
-    Steam.getPlayer('76561198007908897')
+    Steam.getPlayer('test')
       .then((player) => {
         player.should.have.keys(['profile', 'score']);
         player.profile.should.have.keys(['steamid', 'personaname', 'profileurl', 'avatarfull']);
@@ -112,7 +107,7 @@ describe('Steam functions', () => {
       status: 500,
       responseText: JSON.stringify({ error: 'not found' }),
     });
-    Steam.getPlayer('897asd9f6')
+    Steam.getPlayer('test')
       .then(() => {
         should.fail();
         done();
