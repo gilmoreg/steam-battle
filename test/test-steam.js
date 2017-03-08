@@ -2,12 +2,11 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable comma-dangle */
 /* eslint-disable no-undef */
-const chai = require('chai');
-const moxios = require('moxios');
-const Steam = require('../js/steam');
+import chai from 'chai';
+import moxios from 'moxios';
+import * as Steam from '../js/steam';
 
 const should = chai.should();
-chai.use(require('chai-as-promised'));
 
 const fakeProfile = {
   player: {
