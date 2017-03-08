@@ -22,20 +22,21 @@ export const declareWinner = winner => ({
 
 export const BATTLE = 'BATTLE';
 export const battle = ids => dispatch =>
-  Promise.all([Steam.getPlayer(ids[0]), Steam.getPlayer(ids[1])])
-    .then((players) => {
-      players.forEach((player, index) => {
-        dispatch(fillPlayer(player, index));
+  new Promise((resolve, reject) => {
+    Promise.all([Steam.getPlayer(ids[0]), Steam.getPlayer(ids[1])])
+      .then((players) => {
+        players.forEach((player, index) => {
+          dispatch(fillPlayer(player, index));
+        });
+        let winner = 2; // tie
+        if (players[0].score.total > players[1].score.total) winner = 0;
+        else if (players[0].score.total < players[1].score.total) winner = 1;
+        dispatch(declareWinner(winner));
+        resolve(winner);
+      })
+      .catch((err) => {
+        console.log('erroring', err);
+        dispatch(error(err, null));
+        reject(err);
       });
-      let winner = 2; // tie
-      if (players[0].score.total > players[1].score.total) winner = 0;
-      else if (players[0].score.total < players[1].score.total) winner = 1;
-      dispatch(declareWinner(winner));
-      return Promise.resolve(winner);
-    })
-    .catch((err) => {
-      dispatch(error(err, null));
-      return Promise.reject(err);
-    });
-
-
+  });

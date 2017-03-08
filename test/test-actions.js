@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-expressions */
 import chai from 'chai';
 import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
@@ -27,17 +28,26 @@ const fakePlayer = {
   },
 };
 
-const fakePlayer2 = Object.assign({}, fakePlayer,
-  {
-    player: {
-      profile: { steamid: 'test2' },
-      score: { steamid: 'test2', owned: 19 }, // to make the score differ
+const fakePlayer2 = {
+  player: {
+    profile: {
+      steamid: 'test2',
+      personaname: 'test',
+      profileurl: 'test',
+      avatarfull: 'test',
+    },
+    score: {
+      steamid: 'test2',
+      owned: 1,
+      playtime: 0,
+      recent: 0,
+      total: 0,
     },
   },
-);
+};
 
 describe('Actions', () => {
-  it('should create an action to fill a Player component', () => { 
+  it('should create an action to fill a Player component', () => {
     const id = 0;
     const player = fakePlayer;
     const expectedAction = {
@@ -73,7 +83,7 @@ describe('Async Actions', () => {
   beforeEach(() => moxios.install());
   afterEach(() => moxios.uninstall());
 
-  it('should create an action to initiate a battle between two players', () => {
+  it('should create an action to initiate a battle between two players', (done) => {
     moxios.stubRequest(/.*(player\/test1).*/, {
       status: 200,
       responseText: JSON.stringify(fakePlayer),
@@ -83,24 +93,28 @@ describe('Async Actions', () => {
       responseText: JSON.stringify(fakePlayer2),
     });
 
-    const ids = [0, 1];
-    const expectedActions = [
-      { type: actions.FILL_PLAYER, player: fakePlayer, id: 0 },
-      { type: actions.FILL_PLAYER, player: fakePlayer2, id: 1 },
-      { type: actions.DECLARE_WINNER, winner: 1 },
-    ];
+    const ids = ['test1', 'test2'];
+    const expectedActions = JSON.stringify([
+      { type: actions.FILL_PLAYER, player: fakePlayer.player, id: 0 },
+      { type: actions.FILL_PLAYER, player: fakePlayer2.player, id: 1 },
+      { type: actions.DECLARE_WINNER, winner: 0 },
+    ]);
     const initialState = {
       players: [{}, {}],
       winner: null,
       error: null,
     };
     const store = mockStore(initialState);
-    return store.dispatch(actions.battle(ids))
+    store.dispatch(actions.battle(ids))
       .then(() => {
-        store.getActions().should.eql(expectedActions);
+        const actualActions = JSON.stringify(store.getActions());
+        actualActions.should.equal(expectedActions);
+        done();
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log('test failed', err);
         should.fail();
+        done();
       });
   });
 });

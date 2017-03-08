@@ -44,7 +44,9 @@ const getPlayer = id =>
         if (player && player.data && player.data.player) resolve(player.data.player);
         else reject('getPlayer: invalid response from API');
       })
-      .catch(err => reject(err));
+      .catch((err) => {
+        reject(err);
+      });
   });
 
 export { getRandomIDs, checkID, getPlayer };
