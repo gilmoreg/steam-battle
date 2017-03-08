@@ -8,7 +8,7 @@ import * as Steam from '../js/steam';
 
 const should = chai.should();
 
-const fakeProfile = {
+const fakePlayer = {
   player: {
     profile: {
       steamid: 'test',
@@ -86,7 +86,7 @@ describe('Steam functions', () => {
   it('getPlayer should succeed on a known good id', (done) => {
     moxios.stubRequest(/.*(player).*/, {
       status: 200,
-      responseText: JSON.stringify(fakeProfile),
+      responseText: JSON.stringify(fakePlayer),
     });
     Steam.getPlayer('test')
       .then((player) => {
