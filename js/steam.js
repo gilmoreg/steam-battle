@@ -16,6 +16,9 @@ const steamIDs = [
   '76561198191467981',
 ];
 
+/**
+ * Get two random Steam IDs
+ */
 const getRandomIDs = () => {
   const id1 = Math.floor(Math.random() * steamIDs.length);
   let id2;
@@ -25,6 +28,10 @@ const getRandomIDs = () => {
   return [steamIDs[id1], steamIDs[id2]];
 };
 
+/**
+ * Test the validity of a Steam ID via the API
+ * @param {number} id 
+ */
 const checkID = id =>
   new Promise((resolve, reject) => {
     const url = `${ENDPOINT}/checkid/${id}`;
@@ -36,6 +43,10 @@ const checkID = id =>
       .catch(err => reject(err));
   });
 
+/**
+ * Get a player object from the API for the given id
+ * @param {number} id
+ */
 const getPlayer = id =>
   new Promise((resolve, reject) => {
     const url = `${ENDPOINT}/player/${id}`;
