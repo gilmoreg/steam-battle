@@ -26,15 +26,12 @@ export default function steamBattleReducer(state = initialState, action) {
       });
     }
     case 'DECLARE_WINNER': {
-      console.log('WINNER!: ', action.winner);
       return Object.assign({}, state, { winner: action.winner });
     }
     case 'ERROR': {
-      console.log('reducing error', action.msg);
       return Object.assign({}, state, {
         players: state.players.map((p, index) => {
           if (action.player === index) {
-            console.log('ERROR', action.player, action.msg);
             return Object.assign({}, p, { error: action.msg });
           }
           return p;
@@ -42,7 +39,6 @@ export default function steamBattleReducer(state = initialState, action) {
       });
     }
     default: {
-      console.log('No action type found.', action.type);
       return state;
     }
   }
