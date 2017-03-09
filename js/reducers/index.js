@@ -1,7 +1,6 @@
 const initialState = {
   players: [{}, {}],
   winner: null,
-  error: null,
 };
 
 export default function steamBattleReducer(state = initialState, action) {
@@ -9,7 +8,8 @@ export default function steamBattleReducer(state = initialState, action) {
     case 'FILL_ID': {
       return Object.assign({}, state, {
         players: state.players.map((p, index) => {
-          if (action.id === index) {
+          if (action.player === index) {
+            console.log('FILL_ID', action.player, action.id);
             return Object.assign({}, p, { id: action.id });
           }
           return p;
@@ -32,7 +32,15 @@ export default function steamBattleReducer(state = initialState, action) {
     }
     case 'ERROR': {
       console.log(action.msg);
-      return Object.assign({}, state, { error: { msg: action.msg, player: action.player } });
+      return Object.assign({}, state, {
+        players: state.players.map((p, index) => {
+          if (action.player === index) {
+            console.log('ERROR', action.player, action.msg);
+            return Object.assign({}, p, { error: action.msg });
+          }
+          return p;
+        }),
+      });
     }
     default: return state;
   }

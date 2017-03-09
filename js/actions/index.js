@@ -33,12 +33,13 @@ export const getID = (player, id) => dispatch =>
   new Promise((resolve, reject) => {
     Steam.checkID(id)
       .then((sid) => {
+        console.log('getID', player, id, sid);
         dispatch(fillID(player, sid));
         resolve(sid);
       })
       .catch((err) => {
         console.log('erroring', err);
-        dispatch(error(err, null));
+        dispatch(error(err, player));
         reject(err);
       });
   });

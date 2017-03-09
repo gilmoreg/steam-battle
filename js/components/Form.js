@@ -10,6 +10,12 @@ export class Form extends React.Component {
     this.beginBattle = this.beginBattle.bind(this);
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    console.log('Form componentWillUpdate', this.props, nextProps, nextState);
+    if (nextProps.errors[0]) this.player1input.value = nextProps.errors[0];
+    if (nextProps.errors[1]) this.player2input.value = nextProps.errors[1];
+  }
+
   randomBattle(e) {
     e.preventDefault();
     const ids = getRandomIDs();
@@ -20,8 +26,11 @@ export class Form extends React.Component {
     if (e) e.preventDefault();
     const p1id = ids[0] || this.player1input.value.trim();
     const p2id = ids[1] || this.player2input.value.trim();
-    this.props.dispatch(actions.battle([p1id, p2id]));
-    window.location.replace('#/battle');
+    console.log('battle', p1id, p2id);
+    this.props.dispatch(actions.getID(0, p1id));
+    this.props.dispatch(actions.getID(1, p2id));
+    // this.props.dispatch(actions.battle([p1id, p2id]));
+    // window.location.replace('#/battle');
   }
 
   render() {
@@ -39,10 +48,6 @@ export class Form extends React.Component {
           <button className="button" onClick={this.beginBattle}>Fight</button>
           <button className="button" onClick={this.randomBattle}>Random</button>
         </div>
-        <span>
-          {this.props.error ? this.props.error.msg : ''}
-          {this.props.error ? ` Player ${this.props.error.player}` : ''}
-        </span>
       </form>
     );
   }
@@ -54,10 +59,6 @@ Form.defaultProps = {
 
 Form.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
-  error: React.PropTypes.shape({
-    msg: React.PropTypes.string,
-    player: React.PropTypes.number,
-  }),
 };
 
 Form.contextTypes = {
@@ -65,7 +66,8 @@ Form.contextTypes = {
 };
 
 const mapStateToProps = state => ({
-  error: state.error,
+  ids: [state.players[0].id, state.players[1].id],
+  errors: [state.players[0].error, state.players[1].error],
 });
 
 export default connect(mapStateToProps)(Form);
