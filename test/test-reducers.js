@@ -35,6 +35,18 @@ describe('Reducers', () => {
       .should.equal.initialState;
   });
 
+  it('should fill an id on FILL_ID', () => {
+    const newFakePlayer = Object.assign({}, fakePlayer);
+    newFakePlayer.id = 'test2';
+    const expectedStore = {
+      players: [newFakePlayer, {}],
+      winner: null,
+      error: null,
+    };
+    steamBattleReducer(actions.FILL_ID, 0, 'test2')
+      .should.equal.expectedStore;
+  });
+
   it('should fill a profile on FILL_PROFILE', () => {
     const expectedStore = {
       players: [fakePlayer, {}],
