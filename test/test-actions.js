@@ -63,14 +63,14 @@ describe('Actions', () => {
   });
 
   it('should create an action to fill a Player component', () => {
-    const id = 0;
-    const player = fakePlayer;
+    const player = 0;
+    const data = fakePlayer;
     const expectedAction = {
       type: actions.FILL_PLAYER,
       player,
-      id,
+      data,
     };
-    actions.fillPlayer(player, id).should.eql(expectedAction);
+    actions.fillPlayer(player, data).should.eql(expectedAction);
   });
 
   it('should create an action to register an error message', () => {
