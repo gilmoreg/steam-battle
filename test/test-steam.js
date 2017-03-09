@@ -10,14 +10,13 @@ const should = chai.should();
 
 const fakePlayer = {
   player: {
+    id: 'test',
     profile: {
-      steamid: 'test',
       personaname: 'test',
       profileurl: 'test',
       avatarfull: 'test',
     },
     score: {
-      steamid: 'test',
       owned: 18,
       playtime: 22305,
       recent: 162,
@@ -86,9 +85,9 @@ describe('Steam functions', () => {
     });
     Steam.getPlayer('test')
       .then((player) => {
-        player.should.have.keys(['profile', 'score']);
-        player.profile.should.have.keys(['steamid', 'personaname', 'profileurl', 'avatarfull']);
-        player.score.should.have.keys(['steamid', 'owned', 'playtime', 'recent', 'total']);
+        player.should.have.keys(['id', 'profile', 'score']);
+        player.profile.should.have.keys(['personaname', 'profileurl', 'avatarfull']);
+        player.score.should.have.keys(['owned', 'playtime', 'recent', 'total']);
         done();
       })
       .catch(() => {

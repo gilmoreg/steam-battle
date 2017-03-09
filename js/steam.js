@@ -30,7 +30,7 @@ const getRandomIDs = () => {
 
 /**
  * Test the validity of a Steam ID via the API
- * @param {number} id 
+ * @param {number} id
  */
 const checkID = id =>
   new Promise((resolve, reject) => {
@@ -38,7 +38,7 @@ const checkID = id =>
     axios(url)
       .then((sid) => {
         if (sid && sid.data && sid.data.steamid) resolve(sid.data.steamid);
-        else reject('checkID: invalid response from API');
+        else reject(`${id} does not appear to be a valid Steam ID.`);
       })
       .catch(err => reject(err));
   });
@@ -53,11 +53,9 @@ const getPlayer = id =>
     axios(url)
       .then((player) => {
         if (player && player.data && player.data.player) resolve(player.data.player);
-        else reject('getPlayer: invalid response from API');
+        else reject(`${id} does not appear to be a valid Steam ID.`);
       })
-      .catch((err) => {
-        reject(err);
-      });
+      .catch(err => reject(err));
   });
 
 export { getRandomIDs, checkID, getPlayer };
