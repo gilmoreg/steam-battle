@@ -131,8 +131,8 @@ describe('Async Actions', () => {
     });
     const ids = ['test1', 'test2'];
     const expectedActions = JSON.stringify([
-      { type: actions.FILL_PLAYER, player: fakePlayer.player, id: 0 },
-      { type: actions.FILL_PLAYER, player: fakePlayer2.player, id: 1 },
+      { type: actions.FILL_PLAYER, player: 0, data: fakePlayer.player },
+      { type: actions.FILL_PLAYER, player: 1, data: fakePlayer2.player },
       { type: actions.DECLARE_WINNER, winner: 0 },
     ]);
     const store = mockStore(initialState);

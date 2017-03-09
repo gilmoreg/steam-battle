@@ -8,10 +8,10 @@ export const fillID = (player, id) => ({
 });
 
 export const FILL_PLAYER = 'FILL_PLAYER';
-export const fillPlayer = (player, id) => ({
+export const fillPlayer = (player, data) => ({
   type: FILL_PLAYER,
   player,
-  id,
+  data,
 });
 
 export const ERROR = 'ERROR';
@@ -33,7 +33,6 @@ export const getID = (player, id) => dispatch =>
   new Promise((resolve, reject) => {
     Steam.checkID(id)
       .then((sid) => {
-        console.log('getID', player, id, sid);
         dispatch(fillID(player, sid));
         resolve(sid);
       })
@@ -51,7 +50,7 @@ export const battle = ids => dispatch =>
     Promise.all([Steam.getPlayer(ids[0]), Steam.getPlayer(ids[1])])
       .then((players) => {
         players.forEach((player, index) => {
-          dispatch(fillPlayer(player, index));
+          dispatch(fillPlayer(index, player));
         });
         let winner = 2; // tie
         if (players[0].score.total > players[1].score.total) winner = 0;

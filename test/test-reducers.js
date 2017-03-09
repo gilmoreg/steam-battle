@@ -9,7 +9,6 @@ const should = chai.should();
 const initialState = {
   players: [{}, {}],
   winner: null,
-  error: null,
 };
 
 const fakePlayer = {
@@ -31,8 +30,9 @@ const fakePlayer = {
 
 describe('Reducers', () => {
   it('should return the initial state', () => {
-    steamBattleReducer(undefined, {})
-      .should.equal.initialState;
+    steamBattleReducer(initialState,
+      { type: undefined })
+      .should.equal(initialState);
   });
 
   it('should fill an id on FILL_ID', () => {
@@ -41,39 +41,43 @@ describe('Reducers', () => {
     const expectedStore = {
       players: [newFakePlayer, {}],
       winner: null,
-      error: null,
     };
-    steamBattleReducer(actions.FILL_ID, 0, 'test2')
+    steamBattleReducer(initialState,
+      { type: actions.FILL_ID, player: 0, id: 'test2' })
       .should.equal.expectedStore;
   });
 
-  it('should fill a profile on FILL_PROFILE', () => {
+  it('should fill a profile on FILL_PLAYER', () => {
     const expectedStore = {
       players: [fakePlayer, {}],
       winner: null,
-      error: null,
     };
-    steamBattleReducer(actions.FILL_PLAYER, fakePlayer, 0)
-      .should.equal.expectedStore;
+    const newStore = steamBattleReducer(initialState,
+      { type: actions.FILL_PLAYER, player: 0, data: fakePlayer });
+    newStore.should.eql(expectedStore);
   });
 
   it('should declare a winner on DECLARE_WINNER', () => {
     const expectedStore = {
       players: [{}, {}],
       winner: 0,
-      error: null,
     };
-    steamBattleReducer(actions.DECLARE_WINNER, 0)
+    steamBattleReducer(initialState,
+      { type: actions.DECLARE_WINNER, winner: 0 })
       .should.equal.expectedStore;
   });
 
   it('should log an error on ERROR', () => {
+    const newFakePlayer = Object.assign({}, fakePlayer);
+    newFakePlayer.error = 'error';
     const expectedStore = {
-      players: [{}, {}],
+      players: [newFakePlayer, {}],
       winner: null,
-      error: 'test',
     };
-    steamBattleReducer(actions.ERROR, 'test')
-      .should.equal.expectedStore;
+    const firstStore = steamBattleReducer(initialState,
+      { type: actions.FILL_PLAYER, player: 0, data: fakePlayer });
+    const newStore = steamBattleReducer(firstStore,
+      { type: actions.ERROR, msg: 'error', player: 0 });
+    newStore.should.eql(expectedStore);
   });
 });

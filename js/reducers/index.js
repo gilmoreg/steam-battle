@@ -9,7 +9,6 @@ export default function steamBattleReducer(state = initialState, action) {
       return Object.assign({}, state, {
         players: state.players.map((p, index) => {
           if (action.player === index) {
-            console.log('FILL_ID', action.player, action.id);
             return Object.assign({}, p, { id: action.id });
           }
           return p;
@@ -19,8 +18,8 @@ export default function steamBattleReducer(state = initialState, action) {
     case 'FILL_PLAYER': {
       return Object.assign({}, state, {
         players: state.players.map((p, index) => {
-          if (action.id === index) {
-            return action.player;
+          if (action.player === index) {
+            return action.data;
           }
           return p;
         }),
@@ -31,7 +30,7 @@ export default function steamBattleReducer(state = initialState, action) {
       return Object.assign({}, state, { winner: action.winner });
     }
     case 'ERROR': {
-      console.log(action.msg);
+      console.log('reducing error', action.msg);
       return Object.assign({}, state, {
         players: state.players.map((p, index) => {
           if (action.player === index) {
@@ -42,6 +41,9 @@ export default function steamBattleReducer(state = initialState, action) {
         }),
       });
     }
-    default: return state;
+    default: {
+      console.log('No action type found.', action.type);
+      return state;
+    }
   }
 }
