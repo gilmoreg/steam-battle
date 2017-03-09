@@ -14,14 +14,13 @@ const initialState = {
 
 const fakePlayer = {
   player: {
+    id: 'test',
     profile: {
-      steamid: 'test1',
       personaname: 'test',
       profileurl: 'test',
       avatarfull: 'test',
     },
     score: {
-      steamid: 'test1',
       owned: 18,
       playtime: 22305,
       recent: 162,

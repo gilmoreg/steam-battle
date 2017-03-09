@@ -12,14 +12,13 @@ const mockStore = configureMockStore([thunk]);
 
 const fakePlayer = {
   player: {
+    id: 'test',
     profile: {
-      steamid: 'test1',
       personaname: 'test',
       profileurl: 'test',
       avatarfull: 'test',
     },
     score: {
-      steamid: 'test1',
       owned: 18,
       playtime: 22305,
       recent: 162,
@@ -30,14 +29,13 @@ const fakePlayer = {
 
 const fakePlayer2 = {
   player: {
+    id: 'test2',
     profile: {
-      steamid: 'test2',
       personaname: 'test',
       profileurl: 'test',
       avatarfull: 'test',
     },
     score: {
-      steamid: 'test2',
       owned: 1,
       playtime: 0,
       recent: 0,
