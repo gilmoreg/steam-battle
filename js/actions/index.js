@@ -1,5 +1,12 @@
 import * as Steam from '../steam';
 
+export const FILL_ID = 'FILL_ID';
+export const fillID = (player, id) => ({
+  type: FILL_ID,
+  player,
+  id,
+});
+
 export const FILL_PLAYER = 'FILL_PLAYER';
 export const fillPlayer = (player, id) => ({
   type: FILL_PLAYER,
@@ -19,6 +26,23 @@ export const declareWinner = winner => ({
   type: DECLARE_WINNER,
   winner,
 });
+
+// Async Actions
+export const GET_ID = 'GET_ID';
+export const getID = (player, id) => dispatch =>
+  new Promise((resolve, reject) => {
+    Steam.checkID(id)
+      .then((sid) => {
+        dispatch(fillID(player, sid));
+        resolve(sid);
+      })
+      .catch((err) => {
+        console.log('erroring', err);
+        dispatch(error(err, null));
+        reject(err);
+      });
+  });
+
 
 export const BATTLE = 'BATTLE';
 export const battle = ids => dispatch =>

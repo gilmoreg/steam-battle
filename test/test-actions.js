@@ -44,7 +44,24 @@ const fakePlayer2 = {
   },
 };
 
+const initialState = {
+  players: [{}, {}],
+  winner: null,
+  error: null,
+};
+
 describe('Actions', () => {
+  it('should create an action to fill an ID', () => {
+    const player = 0;
+    const id = 'test';
+    const expectedAction = {
+      type: actions.FILL_ID,
+      player,
+      id,
+    };
+    actions.fillID(player, id).should.eql(expectedAction);
+  });
+
   it('should create an action to fill a Player component', () => {
     const id = 0;
     const player = fakePlayer;
@@ -81,6 +98,28 @@ describe('Async Actions', () => {
   beforeEach(() => moxios.install());
   afterEach(() => moxios.uninstall());
 
+  it('should create an action to verify a Steam ID', (done) => {
+    moxios.stubRequest(/.*(checkid).*/, {
+      status: 200,
+      responseText: JSON.stringify({ steamid: '0000' }),
+    });
+    const expectedActions = JSON.stringify(
+      [{ type: actions.FILL_ID, player: 0, id: '0000' }],
+    );
+    const store = mockStore(initialState);
+    store.dispatch(actions.getID(0, 'test'))
+      .then((res) => {
+        const actualActions = JSON.stringify(store.getActions());
+        actualActions.should.equal(expectedActions);
+        done();
+      })
+      .catch((err) => {
+        console.log('getID test failed', err);
+        should.fail();
+        done();
+      });
+  });
+
   it('should create an action to initiate a battle between two players', (done) => {
     moxios.stubRequest(/.*(player\/test1).*/, {
       status: 200,
@@ -90,18 +129,12 @@ describe('Async Actions', () => {
       status: 200,
       responseText: JSON.stringify(fakePlayer2),
     });
-
     const ids = ['test1', 'test2'];
     const expectedActions = JSON.stringify([
       { type: actions.FILL_PLAYER, player: fakePlayer.player, id: 0 },
       { type: actions.FILL_PLAYER, player: fakePlayer2.player, id: 1 },
       { type: actions.DECLARE_WINNER, winner: 0 },
     ]);
-    const initialState = {
-      players: [{}, {}],
-      winner: null,
-      error: null,
-    };
     const store = mockStore(initialState);
     store.dispatch(actions.battle(ids))
       .then(() => {
