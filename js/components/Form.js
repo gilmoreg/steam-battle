@@ -17,18 +17,12 @@ export class Form extends React.Component {
     }, 500);
   }
 
-  
-
   componentWillUpdate(nextProps /* , nextState */) {
     // console.log('Form componentWillUpdate', this.props, nextProps, nextState);
     if (nextProps.errors[0]) {
-      this.playerinput[0].value = '';
-      this.playerinput[0].placeholder = nextProps.errors[0];
       // red border
     }
     if (nextProps.errors[1]) {
-      this.playerinput[1].value = '';
-      this.playerinput[1].placeholder = nextProps.errors[1];
       // red border
     }
     // if we have both ids, enable the fight button;
@@ -69,6 +63,7 @@ export class Form extends React.Component {
             ref={(input) => { this.playerinput[0] = input; }}
             onChange={this.handleChange}
           />
+          {this.props.errors[0] || ''}
         </div>
         <div className="col-3">
           <label htmlFor="player2-input">Player 2</label>
@@ -78,6 +73,7 @@ export class Form extends React.Component {
             ref={(input) => { this.playerinput[1] = input; }}
             onChange={this.handleChange}
           />
+          {this.props.errors[1] || ''}
         </div>
         <div className="buttons col-12">
           <button
@@ -95,13 +91,14 @@ export class Form extends React.Component {
 }
 
 Form.defaultProps = {
-  error: null,
-  ids: null,
+  errors: [null, null],
+  ids: [null, null],
 };
 
 Form.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   ids: React.PropTypes.arrayOf(React.PropTypes.number),
+  errors: React.PropTypes.arrayOf(React.PropTypes.string),
 };
 
 Form.contextTypes = {
