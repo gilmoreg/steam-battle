@@ -41,7 +41,7 @@ export const declareWinner = winner => ({
 // Async Actions
 export const GET_ID = 'GET_ID';
 export const getID = (player, id) => dispatch =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve) => {
     Steam.checkID(id)
       .then((sid) => {
         dispatch(fillID(player, sid));
@@ -50,14 +50,13 @@ export const getID = (player, id) => dispatch =>
       .catch((err) => {
         console.log('erroring', err);
         dispatch(error(err, player));
-        reject(err);
       });
   });
 
 
 export const BATTLE = 'BATTLE';
 export const battle = ids => dispatch =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve) => {
     Promise.all([Steam.getPlayer(ids[0]), Steam.getPlayer(ids[1])])
       .then((players) => {
         players.forEach((player, index) => {
@@ -72,6 +71,5 @@ export const battle = ids => dispatch =>
       .catch((err) => {
         console.log('erroring', err);
         dispatch(error(err, null));
-        reject(err);
       });
   });

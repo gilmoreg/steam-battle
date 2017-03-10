@@ -40,7 +40,7 @@ const checkID = id =>
         if (sid && sid.data && sid.data.steamid) resolve(sid.data.steamid);
         else reject(`${id} does not appear to be a valid Steam ID.`);
       })
-      .catch(err => reject(err));
+      .catch(() => reject(`${id} does not appear to be a valid Steam ID.`));
   });
 
 /**
@@ -55,7 +55,7 @@ const getPlayer = id =>
         if (player && player.data && player.data.player) resolve(player.data.player);
         else reject(`${id} does not appear to be a valid Steam ID.`);
       })
-      .catch(err => reject(err));
+      .catch(() => reject(`${id} does not appear to be a valid Steam ID.`));
   });
 
 export { getRandomIDs, checkID, getPlayer };
