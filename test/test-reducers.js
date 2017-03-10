@@ -29,7 +29,7 @@ const fakePlayer = {
 };
 
 describe('Reducers', () => {
-  it('undefined action should return the initial state', () => {
+  it('undefined action should return the current state', () => {
     steamBattleReducer(initialState,
       { type: undefined })
       .should.eql(initialState);
