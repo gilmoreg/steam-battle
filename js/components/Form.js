@@ -11,9 +11,9 @@ export class Form extends React.Component {
     this.beginBattle = this.beginBattle.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.playerinput = [];
+    // Ensure API calls do not happen until user has not typed for 500ms
     this.checkID = debounce((id) => {
       this.props.dispatch(actions.getID(id, this.playerinput[id].value.trim()));
-      console.log('checkID', id, this.playerinput[id].value.trim());
     }, 500);
   }
 
