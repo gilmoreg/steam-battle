@@ -30,21 +30,23 @@ export class Form extends React.Component {
     // a valid input to an invalid one
     if (this.props.ids[0] && this.props.ids[1]) {
       this.fightbutton.disabled = false;
-    }
-    else this.fightbutton.disabled = true;
+    } else this.fightbutton.disabled = true;
   }
 
   randomBattle(e) {
     e.preventDefault();
-    this.beginBattle(e, getRandomIDs());
+    this.props.dispatch(actions.clearState());
+    const ids = getRandomIDs();
+    ids.forEach((id, index) => {
+      this.props.dispatch(actions.fillID(index, id));
+    });
+    this.beginBattle(e);
   }
 
-  beginBattle(e, ids) {
+  beginBattle(e) {
     e.preventDefault();
-    const p1id = ids[0] || this.playerinput[0].value.trim();
-    const p2id = ids[1] || this.playerinput[1].value.trim();
     if (this.props.ids[0] && this.props.ids[1]) {
-      this.props.dispatch(actions.battle([p1id, p2id]));
+      this.props.dispatch(actions.battle([this.props.ids[0], this.props.ids[1]]));
       window.location.replace('#/battle');
     }
   }

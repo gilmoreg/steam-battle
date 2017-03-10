@@ -30,7 +30,7 @@ const getRandomIDs = () => {
 
 /**
  * Test the validity of a Steam ID via the API
- * @param {number} id
+ * @param {string} id
  */
 const checkID = id =>
   new Promise((resolve, reject) => {
