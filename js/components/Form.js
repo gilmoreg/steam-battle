@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import debounce from 'lodash.debounce';
 import * as actions from '../actions';
 import { getRandomIDs } from '../steam';
 
@@ -9,20 +10,30 @@ export class Form extends React.Component {
     this.randomBattle = this.randomBattle.bind(this);
     this.beginBattle = this.beginBattle.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.playerinput = [];
+    this.checkID = debounce((id) => {
+      this.props.dispatch(actions.getID(id, this.playerinput[id].value.trim()));
+      console.log('checkID', id, this.playerinput[id].value.trim());
+    }, 500);
   }
+
+  
 
   componentWillUpdate(nextProps /* , nextState */) {
     // console.log('Form componentWillUpdate', this.props, nextProps, nextState);
     if (nextProps.errors[0]) {
-      this.player1input.value = '';
-      this.player1input.placeholder = nextProps.errors[0];
+      this.playerinput[0].value = '';
+      this.playerinput[0].placeholder = nextProps.errors[0];
       // red border
     }
     if (nextProps.errors[1]) {
-      this.player2input.value = '';
-      this.player2input.placeholder = nextProps.errors[1];
+      this.playerinput[1].value = '';
+      this.playerinput[1].placeholder = nextProps.errors[1];
       // red border
     }
+    // if we have both ids, enable the fight button;
+    // otherwise keep it disabled in case the user changes from
+    // a valid input to an invalid one
   }
 
   randomBattle(e) {
@@ -32,10 +43,8 @@ export class Form extends React.Component {
 
   beginBattle(e, ids) {
     e.preventDefault();
-    const p1id = ids[0] || this.player1input.value.trim();
-    const p2id = ids[1] || this.player2input.value.trim();
-    this.props.dispatch(actions.getID(0, p1id));
-    this.props.dispatch(actions.getID(1, p2id));
+    const p1id = ids[0] || this.playerinput[0].value.trim();
+    const p2id = ids[1] || this.playerinput[1].value.trim();
     if (this.props.ids[0] && this.props.ids[1]) {
       this.props.dispatch(actions.battle([p1id, p2id]));
       window.location.replace('#/battle');
@@ -43,8 +52,10 @@ export class Form extends React.Component {
   }
 
   handleChange(e) {
-    const id = e.target.id.split('-')[1];
-    this.props.dispatch(actions.clearError(id - 1));
+    const id = e.target.id.split('-')[1] - 1;
+    this.props.dispatch(actions.clearError(id));
+    // If there have been no changes for 500ms, call API to check input
+    this.checkID(id);
   }
 
   render() {
@@ -55,7 +66,7 @@ export class Form extends React.Component {
           <input
             type="text"
             id="player-1-input"
-            ref={(input) => { this.player1input = input; }}
+            ref={(input) => { this.playerinput[0] = input; }}
             onChange={this.handleChange}
           />
         </div>
@@ -64,7 +75,7 @@ export class Form extends React.Component {
           <input
             type="text"
             id="player-2-input"
-            ref={(input) => { this.player2input = input; }}
+            ref={(input) => { this.playerinput[1] = input; }}
             onChange={this.handleChange}
           />
         </div>
