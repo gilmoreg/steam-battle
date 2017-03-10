@@ -16,27 +16,30 @@ export class Form extends React.Component {
     if (nextProps.errors[0]) {
       this.player1input.value = '';
       this.player1input.placeholder = nextProps.errors[0];
+      // red border
     }
     if (nextProps.errors[1]) {
       this.player2input.value = '';
       this.player2input.placeholder = nextProps.errors[1];
+      // red border
     }
   }
 
   randomBattle(e) {
     e.preventDefault();
-    const ids = getRandomIDs();
-    this.beginBattle(e, ids);
+    this.beginBattle(e, getRandomIDs());
   }
 
   beginBattle(e, ids) {
-    if (e) e.preventDefault();
+    e.preventDefault();
     const p1id = ids[0] || this.player1input.value.trim();
     const p2id = ids[1] || this.player2input.value.trim();
     this.props.dispatch(actions.getID(0, p1id));
     this.props.dispatch(actions.getID(1, p2id));
-    // this.props.dispatch(actions.battle([p1id, p2id]));
-    // window.location.replace('#/battle');
+    if (this.props.ids[0] && this.props.ids[1]) {
+      this.props.dispatch(actions.battle([p1id, p2id]));
+      window.location.replace('#/battle');
+    }
   }
 
   handleChange(e) {
@@ -66,7 +69,13 @@ export class Form extends React.Component {
           />
         </div>
         <div className="buttons col-12">
-          <button className="button" onClick={this.beginBattle}>Fight</button>
+          <button
+            className="button"
+            onClick={this.beginBattle}
+            disabled
+          >
+            Fight
+          </button>
           <button className="button" onClick={this.randomBattle}>Random</button>
         </div>
       </form>
@@ -76,10 +85,12 @@ export class Form extends React.Component {
 
 Form.defaultProps = {
   error: null,
+  ids: null,
 };
 
 Form.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
+  ids: React.PropTypes.arrayOf(React.PropTypes.number),
 };
 
 Form.contextTypes = {

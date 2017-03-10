@@ -53,10 +53,10 @@ export const getID = (player, id) => dispatch =>
       });
   });
 
-
 export const BATTLE = 'BATTLE';
 export const battle = ids => dispatch =>
   new Promise((resolve) => {
+    dispatch(clearState());
     Promise.all([Steam.getPlayer(ids[0]), Steam.getPlayer(ids[1])])
       .then((players) => {
         players.forEach((player, index) => {
