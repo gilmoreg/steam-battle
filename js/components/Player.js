@@ -9,6 +9,7 @@ export function Player(props) {
   if (player && player.profile) {
     return (
       <div id={`player${props.pid}`} className="player col-3">
+        {(props.winner === props.pid) ? 'Winner' : 'Loser'}
         <Profile profile={player.profile} id={props.pid} />
         <Score score={player.score} />
       </div>
@@ -23,6 +24,7 @@ export function Player(props) {
 
 Player.defaultProps = {
   player: null,
+  winner: 0,
 };
 
 Player.propTypes = {
@@ -41,10 +43,12 @@ Player.propTypes = {
       total: React.PropTypes.number,
     }),
   }),
+  winner: React.PropTypes.number,
 };
 
 const mapStateToProps = (state, props) => ({
   player: state.players[props.pid],
+  winner: state.winner,
 });
 
 export default connect(mapStateToProps)(Player);
