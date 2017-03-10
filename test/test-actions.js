@@ -47,10 +47,16 @@ const fakePlayer2 = {
 const initialState = {
   players: [{}, {}],
   winner: null,
-  error: null,
 };
 
 describe('Actions', () => {
+  it('should create an action to clear state', () => {
+    const expectedAction = {
+      type: actions.CLEAR_STATE,
+    };
+    actions.clearState().should.eql(expectedAction);
+  });
+
   it('should create an action to fill an ID', () => {
     const player = 0;
     const id = 'test';

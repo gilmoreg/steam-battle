@@ -29,10 +29,19 @@ const fakePlayer = {
 };
 
 describe('Reducers', () => {
-  it('should return the initial state', () => {
+  it('undefined action should return the initial state', () => {
     steamBattleReducer(initialState,
       { type: undefined })
-      .should.equal(initialState);
+      .should.eql(initialState);
+  });
+
+  it('should clear state', () => {
+    const fakeState = {
+      players: [fakePlayer, fakePlayer],
+      winner: 0,
+    };
+    steamBattleReducer(fakeState, { type: actions.CLEAR_STATE })
+      .should.eql(initialState);
   });
 
   it('should fill an id on FILL_ID', () => {

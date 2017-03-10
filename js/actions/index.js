@@ -1,5 +1,10 @@
 import * as Steam from '../steam';
 
+export const CLEAR_STATE = 'CLEAR_STATE';
+export const clearState = () => ({
+  type: CLEAR_STATE,
+});
+
 export const FILL_ID = 'FILL_ID';
 export const fillID = (player, id) => ({
   type: FILL_ID,

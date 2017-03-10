@@ -5,6 +5,9 @@ const initialState = {
 
 export default function steamBattleReducer(state = initialState, action) {
   switch (action.type) {
+    case 'CLEAR_STATE': {
+      return initialState;
+    }
     case 'FILL_ID': {
       return Object.assign({}, state, {
         players: state.players.map((p, index) => {
