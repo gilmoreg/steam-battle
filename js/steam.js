@@ -49,7 +49,7 @@ const checkID = id =>
 
 /**
  * Get a player object from the API for the given id
- * @param {number} id
+ * @param {string} id
  */
 const getPlayer = id =>
   new Promise((resolve, reject) => {
