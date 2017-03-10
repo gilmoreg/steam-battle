@@ -28,6 +28,10 @@ export class Form extends React.Component {
     // if we have both ids, enable the fight button;
     // otherwise keep it disabled in case the user changes from
     // a valid input to an invalid one
+    if (this.props.ids[0] && this.props.ids[1]) {
+      this.fightbutton.disabled = false;
+    }
+    else this.fightbutton.disabled = true;
   }
 
   randomBattle(e) {
@@ -78,6 +82,8 @@ export class Form extends React.Component {
         <div className="buttons col-12">
           <button
             className="button"
+            id="fight-button"
+            ref={(input) => { this.fightbutton = input; }}
             onClick={this.beginBattle}
             disabled
           >
@@ -97,7 +103,7 @@ Form.defaultProps = {
 
 Form.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
-  ids: React.PropTypes.arrayOf(React.PropTypes.number),
+  ids: React.PropTypes.arrayOf(React.PropTypes.string),
   errors: React.PropTypes.arrayOf(React.PropTypes.string),
 };
 
