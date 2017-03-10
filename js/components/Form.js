@@ -37,10 +37,8 @@ export class Form extends React.Component {
     e.preventDefault();
     this.props.dispatch(actions.clearState());
     const ids = getRandomIDs();
-    ids.forEach((id, index) => {
-      this.props.dispatch(actions.fillID(index, id));
-    });
-    this.beginBattle(e);
+    this.props.dispatch(actions.battle([ids[0], ids[1]]));
+    window.location.replace('#/battle');
   }
 
   beginBattle(e) {
