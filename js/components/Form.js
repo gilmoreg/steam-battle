@@ -106,10 +106,6 @@ Form.propTypes = {
   errors: React.PropTypes.arrayOf(React.PropTypes.string),
 };
 
-Form.contextTypes = {
-  router: React.PropTypes.object,
-};
-
 const mapStateToProps = state => ({
   ids: [state.players[0].id, state.players[1].id],
   errors: [state.players[0].error, state.players[1].error],

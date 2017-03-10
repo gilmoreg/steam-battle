@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Router, Route, hashHistory } from 'react-router';
 import SteamBattle from './components/SteamBattle';
 import Battle from './components/Battle';
 
