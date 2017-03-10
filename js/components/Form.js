@@ -17,8 +17,7 @@ export class Form extends React.Component {
     }, 500);
   }
 
-  componentWillUpdate(nextProps /* , nextState */) {
-    // console.log('Form componentWillUpdate', this.props, nextProps, nextState);
+  componentWillUpdate(nextProps) {
     if (nextProps.errors[0]) {
       // red border
     }
