@@ -11,7 +11,6 @@ export class Battle extends React.Component {
 
   retry(e) {
     e.preventDefault();
-    console.log('Clearing state', this.props);
     this.props.dispatch(actions.clearState());
     window.location.replace('#/');
   }

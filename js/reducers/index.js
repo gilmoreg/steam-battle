@@ -6,7 +6,6 @@ const initialState = {
 export default function steamBattleReducer(state = initialState, action) {
   switch (action.type) {
     case 'CLEAR_STATE': {
-      console.log('CLEAR_STATE');
       return initialState;
     }
     case 'FILL_ID': {
