@@ -35,7 +35,7 @@ describe('Reducers', () => {
       .should.eql(initialState);
   });
 
-  it('should clear state', () => {
+  it('should clear state on CLEAR_STATE', () => {
     const fakeState = {
       players: [fakePlayer, fakePlayer],
       winner: 0,
