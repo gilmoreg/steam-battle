@@ -26,6 +26,12 @@ export const error = (msg, player) => ({
   player,
 });
 
+export const CLEAR_ERROR = 'CLEAR_ERROR';
+export const clearError = player => ({
+  type: CLEAR_ERROR,
+  player,
+});
+
 export const DECLARE_WINNER = 'DECLARE_WINNER';
 export const declareWinner = winner => ({
   type: DECLARE_WINNER,

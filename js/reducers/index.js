@@ -28,9 +28,6 @@ export default function steamBattleReducer(state = initialState, action) {
         }),
       });
     }
-    case 'DECLARE_WINNER': {
-      return Object.assign({}, state, { winner: action.winner });
-    }
     case 'ERROR': {
       return Object.assign({}, state, {
         players: state.players.map((p, index) => {
@@ -40,6 +37,21 @@ export default function steamBattleReducer(state = initialState, action) {
           return p;
         }),
       });
+    }
+    case 'CLEAR_ERROR': {
+      return Object.assign({}, state, {
+        players: state.players.map((p, index) => {
+          if (action.player === index) {
+            const player = Object.assign({}, p);
+            delete player.error;
+            return player;
+          }
+          return p;
+        }),
+      });
+    }
+    case 'DECLARE_WINNER': {
+      return Object.assign({}, state, { winner: action.winner });
     }
     default: {
       return state;

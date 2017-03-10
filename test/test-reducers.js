@@ -66,16 +66,6 @@ describe('Reducers', () => {
     newStore.should.eql(expectedStore);
   });
 
-  it('should declare a winner on DECLARE_WINNER', () => {
-    const expectedStore = {
-      players: [{}, {}],
-      winner: 0,
-    };
-    steamBattleReducer(initialState,
-      { type: actions.DECLARE_WINNER, winner: 0 })
-      .should.equal.expectedStore;
-  });
-
   it('should log an error on ERROR', () => {
     const newFakePlayer = Object.assign({}, fakePlayer);
     newFakePlayer.error = 'error';
@@ -88,5 +78,29 @@ describe('Reducers', () => {
     const newStore = steamBattleReducer(firstStore,
       { type: actions.ERROR, msg: 'error', player: 0 });
     newStore.should.eql(expectedStore);
+  });
+
+  it('should clear an error on CLEAR_ERROR', () => {
+    const newFakePlayer = Object.assign({}, fakePlayer);
+    newFakePlayer.error = 'error';
+    const expectedStore = {
+      players: [fakePlayer, {}],
+      winner: null,
+    };
+    const firstStore = steamBattleReducer(initialState,
+      { type: actions.FILL_PLAYER, player: 0, data: newFakePlayer });
+    const newStore = steamBattleReducer(firstStore,
+      { type: actions.CLEAR_ERROR, player: 0 });
+    newStore.should.eql(expectedStore);
+  });
+
+  it('should declare a winner on DECLARE_WINNER', () => {
+    const expectedStore = {
+      players: [{}, {}],
+      winner: 0,
+    };
+    steamBattleReducer(initialState,
+      { type: actions.DECLARE_WINNER, winner: 0 })
+      .should.equal.expectedStore;
   });
 });

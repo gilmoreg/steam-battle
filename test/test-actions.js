@@ -90,6 +90,15 @@ describe('Actions', () => {
     actions.error(msg, player).should.eql(expectedAction);
   });
 
+  it('should create an action to clear an error message', () => {
+    const player = 0;
+    const expectedAction = {
+      type: actions.CLEAR_ERROR,
+      player,
+    };
+    actions.clearError(player).should.eql(expectedAction);
+  });
+
   it('should create an action to declare a winner', () => {
     const winner = 0;
     const expectedAction = {
