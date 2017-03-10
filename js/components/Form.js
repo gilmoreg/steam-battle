@@ -8,12 +8,19 @@ export class Form extends React.Component {
     super(props);
     this.randomBattle = this.randomBattle.bind(this);
     this.beginBattle = this.beginBattle.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    console.log('Form componentWillUpdate', this.props, nextProps, nextState);
-    if (nextProps.errors[0]) this.player1input.value = nextProps.errors[0];
-    if (nextProps.errors[1]) this.player2input.value = nextProps.errors[1];
+  componentWillUpdate(nextProps /* , nextState */) {
+    // console.log('Form componentWillUpdate', this.props, nextProps, nextState);
+    if (nextProps.errors[0]) {
+      this.player1input.value = '';
+      this.player1input.placeholder = nextProps.errors[0];
+    }
+    if (nextProps.errors[1]) {
+      this.player2input.value = '';
+      this.player2input.placeholder = nextProps.errors[1];
+    }
   }
 
   randomBattle(e) {
@@ -26,11 +33,15 @@ export class Form extends React.Component {
     if (e) e.preventDefault();
     const p1id = ids[0] || this.player1input.value.trim();
     const p2id = ids[1] || this.player2input.value.trim();
-    console.log('battle', p1id, p2id);
     this.props.dispatch(actions.getID(0, p1id));
     this.props.dispatch(actions.getID(1, p2id));
     // this.props.dispatch(actions.battle([p1id, p2id]));
     // window.location.replace('#/battle');
+  }
+
+  handleChange(e) {
+    const id = e.target.id.split('-')[1];
+    this.props.dispatch(actions.clearError(id - 1));
   }
 
   render() {
@@ -38,11 +49,21 @@ export class Form extends React.Component {
       <form onSubmit={this.beginBattle}>
         <div className="col-3">
           <label htmlFor="player1-input">Player 1</label>
-          <input type="text" id="player1-input" ref={(input) => { this.player1input = input; }} />
+          <input
+            type="text"
+            id="player-1-input"
+            ref={(input) => { this.player1input = input; }}
+            onChange={this.handleChange}
+          />
         </div>
         <div className="col-3">
           <label htmlFor="player2-input">Player 2</label>
-          <input type="text" id="player2-input" ref={(input) => { this.player2input = input; }} />
+          <input
+            type="text"
+            id="player-2-input"
+            ref={(input) => { this.player2input = input; }}
+            onChange={this.handleChange}
+          />
         </div>
         <div className="buttons col-12">
           <button className="button" onClick={this.beginBattle}>Fight</button>
