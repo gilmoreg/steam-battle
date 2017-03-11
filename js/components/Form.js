@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import debounce from 'lodash.debounce';
 import * as actions from '../actions';
 import { getRandomIDs } from '../steam';
 import PlayerInput from './PlayerInput';
@@ -10,12 +9,6 @@ export class Form extends React.Component {
     super(props);
     this.randomBattle = this.randomBattle.bind(this);
     this.beginBattle = this.beginBattle.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.playerinput = [];
-    // Ensure API calls do not happen until user has not typed for 500ms
-    this.checkID = debounce((id) => {
-      this.props.dispatch(actions.getID(id, this.playerinput[id].value.trim()));
-    }, 150);
   }
 
   componentWillUpdate(nextProps) {
@@ -48,20 +41,6 @@ export class Form extends React.Component {
       this.props.dispatch(actions.battle([this.props.ids[0], this.props.ids[1]]));
       window.location.replace('#/battle');
     }
-  }
-
-  handleChange(e) {
-    const id = e.target.id.split('-')[1] - 1;
-    this.props.dispatch(actions.clearError(id));
-    // If there have been no changes for 500ms, call API to check input
-    this.checkID(id);
-    // if we have both ids, enable the fight button;
-    // otherwise keep it disabled in case the user changes from
-    // a valid input to an invalid one
-    if (this.props.ids[0] && this.props.ids[1]) {
-      console.log('got both ids');
-      this.fightbutton.disabled = false;
-    } else this.fightbutton.disabled = true;
   }
 
   render() {
