@@ -9,16 +9,22 @@ export class Form extends React.Component {
     super(props);
     this.randomBattle = this.randomBattle.bind(this);
     this.beginBattle = this.beginBattle.bind(this);
+    const self = this;
+    this.readyCheck = (() => {
+      if (self.props.ids[0] && self.props.ids[1]) {
+        console.log('got both ids');
+        self.fightbutton.disabled = false;
+      } else self.fightbutton.disabled = true;
+    });
+    this.interval = null;
   }
 
-  componentWillUpdate() {
-    // if we have both ids, enable the fight button;
-    // otherwise keep it disabled in case the user changes from
-    // a valid input to an invalid one
-    if (this.props.ids[0] && this.props.ids[1]) {
-      console.log('got both ids');
-      this.fightbutton.disabled = false;
-    } else this.fightbutton.disabled = true;
+  componentDidMount() {
+    this.interval = setInterval(this.readyCheck, 250);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   randomBattle(e) {
@@ -26,6 +32,7 @@ export class Form extends React.Component {
     this.props.dispatch(actions.clearState());
     const ids = getRandomIDs();
     this.props.dispatch(actions.battle([ids[0], ids[1]]));
+    clearInterval(this.interval);
     window.location.replace('#/battle');
   }
 
@@ -33,6 +40,7 @@ export class Form extends React.Component {
     e.preventDefault();
     if (this.props.ids[0] && this.props.ids[1]) {
       this.props.dispatch(actions.battle([this.props.ids[0], this.props.ids[1]]));
+      clearInterval(this.readyCheck);
       window.location.replace('#/battle');
     }
   }
