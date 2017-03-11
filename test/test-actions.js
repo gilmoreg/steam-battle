@@ -116,7 +116,9 @@ describe('Async Actions', () => {
   it('should create an action to verify a Steam ID', (done) => {
     moxios.stubRequest(/.*(checkid).*/, {
       status: 200,
-      responseText: JSON.stringify({ steamid: '0000' }),
+      responseText: JSON.stringify(
+        { id: '0000', profile: fakePlayer.player.profile },
+      ),
     });
     const expectedActions = JSON.stringify(
       [{ type: actions.FILL_ID, player: 0, id: '0000' }],
@@ -146,6 +148,7 @@ describe('Async Actions', () => {
     });
     const ids = ['test1', 'test2'];
     const expectedActions = JSON.stringify([
+      { type: actions.CLEAR_STATE },
       { type: actions.FILL_PLAYER, player: 0, data: fakePlayer.player },
       { type: actions.FILL_PLAYER, player: 1, data: fakePlayer2.player },
       { type: actions.DECLARE_WINNER, winner: 0 },

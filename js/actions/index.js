@@ -43,9 +43,9 @@ export const GET_ID = 'GET_ID';
 export const getID = (player, id) => dispatch =>
   new Promise((resolve) => {
     Steam.checkID(id)
-      .then((sid) => {
-        dispatch(fillID(player, sid));
-        resolve(sid);
+      .then((steamPlayer) => {
+        dispatch(fillID(player, steamPlayer.id));
+        resolve(steamPlayer.id);
       })
       .catch((err) => {
         console.log('erroring', err);

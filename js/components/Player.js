@@ -35,6 +35,7 @@ Player.propTypes = {
       profileurl: React.PropTypes.string,
       personaname: React.PropTypes.string,
       avatarfull: React.PropTypes.string,
+      avatar: React.PropTypes.string,
     }),
     score: React.PropTypes.shape({
       owned: React.PropTypes.number,

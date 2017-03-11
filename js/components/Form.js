@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
+import { Typeahead } from 'react-bootstrap-typeahead';
 import * as actions from '../actions';
 import { getRandomIDs } from '../steam';
 
@@ -14,7 +15,7 @@ export class Form extends React.Component {
     // Ensure API calls do not happen until user has not typed for 500ms
     this.checkID = debounce((id) => {
       this.props.dispatch(actions.getID(id, this.playerinput[id].value.trim()));
-    }, 200);
+    }, 150);
   }
 
   componentWillUpdate(nextProps) {
@@ -28,6 +29,7 @@ export class Form extends React.Component {
     // otherwise keep it disabled in case the user changes from
     // a valid input to an invalid one
     if (this.props.ids[0] && this.props.ids[1]) {
+      console.log('got both ids');
       this.fightbutton.disabled = false;
     } else this.fightbutton.disabled = true;
   }
@@ -53,6 +55,13 @@ export class Form extends React.Component {
     this.props.dispatch(actions.clearError(id));
     // If there have been no changes for 500ms, call API to check input
     this.checkID(id);
+    // if we have both ids, enable the fight button;
+    // otherwise keep it disabled in case the user changes from
+    // a valid input to an invalid one
+    if (this.props.ids[0] && this.props.ids[1]) {
+      console.log('got both ids');
+      this.fightbutton.disabled = false;
+    } else this.fightbutton.disabled = true;
   }
 
   render() {

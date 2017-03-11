@@ -7,6 +7,7 @@ import TestUtils from 'react-addons-test-utils';
 import chai from 'chai';
 import { Player } from '../../js/components/Player';
 import Profile from '../../js/components/Profile';
+import Score from '../../js/components/Score';
 import PlaceholderProfile from '../../js/components/PlaceholderProfile';
 
 const should = chai.should();
@@ -20,6 +21,7 @@ describe('Player component', () => {
         profileurl: 'test',
         personaname: 'test',
         avatarfull: 'test',
+        avatar: 'test',
       },
       score: {
         owned: 0,
@@ -33,7 +35,9 @@ describe('Player component', () => {
     result.type.should.equal('div');
     result.props.className.should.equal('player col-3');
     result.props.id.should.equal('player0');
-    result.props.children[0].type.should.equal(Profile);
+    result.props.children[0].should.equal('Winner');
+    result.props.children[1].type.should.equal(Profile);
+    result.props.children[2].type.should.equal(Score);
     // TODO what else
   });
   it('should render a component with default props', () => {

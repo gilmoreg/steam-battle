@@ -40,9 +40,10 @@ const checkID = id =>
   new Promise((resolve, reject) => {
     const url = `${ENDPOINT}/checkid/${id}`;
     axios(url)
-      .then((sid) => {
-        if (sid && sid.data && sid.data.steamid) resolve(sid.data.steamid);
-        else reject(`${id} does not appear to be a valid Steam ID.`);
+      .then((player) => {
+        if (player && player.data && player.data.id && player.data.profile) {
+          resolve({ id: player.data.id, profile: player.data.profile });
+        } else reject(`${id} does not appear to be a valid Steam ID.`);
       })
       .catch(() => reject(`${id} does not appear to be a valid Steam ID.`));
   });

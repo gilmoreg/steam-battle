@@ -15,6 +15,7 @@ const fakePlayer = {
       personaname: 'test',
       profileurl: 'test',
       avatarfull: 'test',
+      avatar: 'test',
     },
     score: {
       owned: 18,
@@ -39,11 +40,13 @@ describe('Steam functions', () => {
   it('checkID should validate a known good id', (done) => {
     moxios.stubRequest(/.*(checkid).*/, {
       status: 200,
-      responseText: JSON.stringify({ steamid: 'test' }),
+      responseText: JSON.stringify({ id: 'test', profile: fakePlayer.player.profile }),
     });
     Steam.checkID('test')
       .then((response) => {
-        response.should.equal('test');
+        response.should.have.keys(['id', 'profile']);
+        response.id.should.equal('test');
+        response.profile.should.have.keys(['personaname', 'profileurl', 'avatarfull', 'avatar']);
         done();
       })
       .catch(err => should.fail(err));
@@ -52,11 +55,13 @@ describe('Steam functions', () => {
   it('checkID should validate a known good vanity url', (done) => {
     moxios.stubRequest(/.*(checkid).*/, {
       status: 200,
-      responseText: JSON.stringify({ steamid: 'test' }),
+      responseText: JSON.stringify({ id: 'test', profile: fakePlayer.player.profile }),
     });
     Steam.checkID('test')
       .then((response) => {
-        response.should.equal('test');
+        response.should.have.keys(['id', 'profile']);
+        response.id.should.equal('test');
+        response.profile.should.have.keys(['personaname', 'profileurl', 'avatarfull', 'avatar']);
         done();
       })
       .catch(err => should.fail(err));
@@ -86,7 +91,7 @@ describe('Steam functions', () => {
     Steam.getPlayer('test')
       .then((player) => {
         player.should.have.keys(['id', 'profile', 'score']);
-        player.profile.should.have.keys(['personaname', 'profileurl', 'avatarfull']);
+        player.profile.should.have.keys(['personaname', 'profileurl', 'avatarfull', 'avatar']);
         player.score.should.have.keys(['owned', 'playtime', 'recent', 'total']);
         done();
       })
