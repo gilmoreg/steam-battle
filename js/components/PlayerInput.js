@@ -40,6 +40,8 @@ export class PlayerInput extends React.Component {
     return (
       <div className="col-3">
         <h3>Player {this.props.pid + 1}</h3>
+        <SmallProfile profile={this.state.profile} />
+        {this.state.error ? this.state.error : ''}
         <input
           type="text"
           id={`player${this.props.pid + 1}-input`}
@@ -47,8 +49,6 @@ export class PlayerInput extends React.Component {
           onChange={this.handleChange}
           placeholder="Enter a Steam ID..."
         />
-        {this.state.profile ? <SmallProfile profile={this.state.profile} /> : '' }
-        {this.state.error ? this.state.error : ''}
       </div>
     );
   }

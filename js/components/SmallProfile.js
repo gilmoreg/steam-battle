@@ -7,14 +7,34 @@ export default function SmallProfile(props) {
         <img
           src={props.profile.avatar}
           alt={props.profile.personaname}
-          style={{}}
+          style={{
+            height: '32px',
+            width: '32px',
+            marginRight: '10px',
+          }}
         />
         <span>{props.profile.personaname}</span>
       </div>
     );
   }
-  return (<div />);
+  return (
+    <div className="small-profile">
+      <img
+        src={'https://steamdb.info/static/img/default.jpg'}
+        alt={'Default Steam avatar'}
+        style={{
+          height: '32px',
+          width: '32px',
+          marginRight: '10px',
+        }}
+      />
+    </div>
+  );
 }
+
+SmallProfile.defaultProps = {
+  profile: null,
+};
 
 SmallProfile.propTypes = {
   profile: React.PropTypes.shape({
@@ -22,5 +42,5 @@ SmallProfile.propTypes = {
     personaname: React.PropTypes.string,
     avatarfull: React.PropTypes.string,
     avatar: React.PropTypes.string,
-  }).isRequired,
+  }),
 };
