@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
-import { Typeahead } from 'react-bootstrap-typeahead';
 import * as actions from '../actions';
 import { getRandomIDs } from '../steam';
+import PlayerInput from './PlayerInput';
 
 export class Form extends React.Component {
   constructor(props) {
@@ -67,26 +67,10 @@ export class Form extends React.Component {
   render() {
     return (
       <form onSubmit={this.beginBattle}>
-        <div className="col-3">
-          <label htmlFor="player1-input">Player 1</label>
-          <input
-            type="text"
-            id="player-1-input"
-            ref={(input) => { this.playerinput[0] = input; }}
-            onChange={this.handleChange}
-          />
-          {this.props.errors[0] || ''}
-        </div>
-        <div className="col-3">
-          <label htmlFor="player2-input">Player 2</label>
-          <input
-            type="text"
-            id="player-2-input"
-            ref={(input) => { this.playerinput[1] = input; }}
-            onChange={this.handleChange}
-          />
-          {this.props.errors[1] || ''}
-        </div>
+        <PlayerInput pid={0} />
+        {this.props.errors[0] || ''}
+        <PlayerInput pid={1} />
+        {this.props.errors[1] || ''}
         <div className="buttons col-12">
           <button
             className="button"
