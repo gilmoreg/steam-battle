@@ -12,7 +12,6 @@ export class Form extends React.Component {
     const self = this;
     this.readyCheck = (() => {
       if (self.props.ids[0] && self.props.ids[1]) {
-        console.log('got both ids');
         self.fightbutton.disabled = false;
       } else self.fightbutton.disabled = true;
     });

@@ -15,13 +15,11 @@ export class PlayerInput extends React.Component {
       checkID(id)
         .then((player) => {
           if (player) {
-            console.log('have a valid ID, dispatching fillID');
             this.props.dispatch(actions.fillID(this.props.pid, player.id));
             this.setState({ profile: player.profile });
           }
         })
         .catch(() => {
-          console.log('invalid ID, setting error state');
           this.setState({ error: `${id} not found.`, profile: null });
         });
     }, 200);
@@ -32,7 +30,6 @@ export class PlayerInput extends React.Component {
   }
 
   handleChange(e) {
-    console.log('handleSearch', e.target.value);
     this.testID(e.target.value);
   }
 
@@ -60,8 +57,3 @@ PlayerInput.propTypes = {
 };
 
 export default connect()(PlayerInput);
-
-/*
-
-
-*/
