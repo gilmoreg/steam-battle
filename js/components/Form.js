@@ -14,7 +14,7 @@ export class Form extends React.Component {
     // Ensure API calls do not happen until user has not typed for 500ms
     this.checkID = debounce((id) => {
       this.props.dispatch(actions.getID(id, this.playerinput[id].value.trim()));
-    }, 500);
+    }, 200);
   }
 
   componentWillUpdate(nextProps) {
