@@ -11,13 +11,7 @@ export class Form extends React.Component {
     this.beginBattle = this.beginBattle.bind(this);
   }
 
-  componentWillUpdate(nextProps) {
-    if (nextProps.errors[0]) {
-      // red border
-    }
-    if (nextProps.errors[1]) {
-      // red border
-    }
+  componentWillUpdate() {
     // if we have both ids, enable the fight button;
     // otherwise keep it disabled in case the user changes from
     // a valid input to an invalid one
@@ -47,9 +41,7 @@ export class Form extends React.Component {
     return (
       <form onSubmit={this.beginBattle}>
         <PlayerInput pid={0} />
-        {this.props.errors[0] || ''}
         <PlayerInput pid={1} />
-        {this.props.errors[1] || ''}
         <div className="buttons col-12">
           <button
             className="button"
@@ -68,19 +60,16 @@ export class Form extends React.Component {
 }
 
 Form.defaultProps = {
-  errors: [null, null],
   ids: [null, null],
 };
 
 Form.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   ids: React.PropTypes.arrayOf(React.PropTypes.string),
-  errors: React.PropTypes.arrayOf(React.PropTypes.string),
 };
 
 const mapStateToProps = state => ({
   ids: [state.players[0].id, state.players[1].id],
-  errors: [state.players[0].error, state.players[1].error],
 });
 
 export default connect(mapStateToProps)(Form);

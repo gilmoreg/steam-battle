@@ -22,7 +22,7 @@ export class PlayerInput extends React.Component {
         })
         .catch(() => {
           console.log('invalid ID, setting error state');
-          this.setState({ error: `${id} not found.` });
+          this.setState({ error: `${id} not found.`, profile: null });
         });
     }, 200);
     this.state = {
@@ -47,8 +47,8 @@ export class PlayerInput extends React.Component {
           onChange={this.handleChange}
           placeholder="Enter a Steam ID..."
         />
-        {this.state.error ? this.state.error : ''}
         {this.state.profile ? <SmallProfile profile={this.state.profile} /> : '' }
+        {this.state.error ? this.state.error : ''}
       </div>
     );
   }
