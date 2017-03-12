@@ -39,13 +39,10 @@ header {
 header h1 {
   margin-top: 0px;
   padding-top: 20px;
-}
-
-header p {
   padding-bottom: 20px;
 }
 
-header, form {
+header, p, form {
     text-align: center;
 }
 
