@@ -3,50 +3,18 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable no-undef */
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import { shallow } from 'enzyme';
+import { Provider } from 'react-redux';
 import chai from 'chai';
 import SteamBattle from '../../js/components/SteamBattle';
+import Form from '../../js/components/Form';
 
 const should = chai.should();
 
 describe('SteamBattle component', () => {
   it('should render the component properly', () => {
-    const renderer = TestUtils.createRenderer();
-    renderer.render(<SteamBattle />);
-    const result = renderer.getRenderOutput();
-    result.props.store.should.exist;
-    // TODO what else to test?
+    const wrapper = shallow(<SteamBattle />);
+    wrapper.find(Provider).should.have.length(1);
+    wrapper.find(Form).should.have.length(1);
   });
 });
-
-/*
-console.log('SteamBattle', result);
-SteamBattle { '$$typeof': Symbol(react.element),     
-  type:                                              
-   { [Function: Provider]                            
-     propTypes:                                      
-      { store: [Function: bound checkType],          
-        children: [Function: bound checkType] },     
-     childContextTypes: { store: [Function: bound che
-ckType] } },                                         
-  key: null,                                         
-  ref: null,                                         
-  props:                                             
-   { store:                                          
-      { dispatch: [Function],                        
-        subscribe: [Function: subscribe],            
-        getState: [Function: getState],              
-        replaceReducer: [Function: replaceReducer] },
-                                                     
-     children:                                       
-      { '$$typeof': Symbol(react.element),           
-        type: [Object],                              
-        key: null,                                   
-        ref: null,                                   
-        props: {},                                   
-        _owner: null,                                
-        _store: {} } },                              
-  _owner: null,                                      
-  _store: {} }                                       
-
-*/
