@@ -67,11 +67,12 @@ export class Form extends React.Component {
 }
 
 Form.defaultProps = {
+  dispatch: null,
   ids: [null, null],
 };
 
 Form.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
+  dispatch: React.PropTypes.func,
   ids: React.PropTypes.arrayOf(React.PropTypes.string),
 };
 

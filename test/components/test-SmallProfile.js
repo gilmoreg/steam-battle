@@ -3,7 +3,6 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable no-undef */
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
 import chai from 'chai';
 import { shallow } from 'enzyme';
 import SmallProfile from '../../js/components/SmallProfile';
@@ -19,8 +18,10 @@ describe('SmallProfile component', () => {
       avatar: 'test',
     };
     const wrapper = shallow(<SmallProfile profile={profile} />);
-    console.log('smallprofile wrapper', JSON.stringify(wrapper));
-    // TODO What to test?
+    wrapper.node.type.should.equal('div');
+    wrapper.node.props.className.should.equal('small-profile');
+    wrapper.node.props.children[0].type.should.equal('img');
+    wrapper.node.props.children[0].props.src.should.equal('test');
   });
 });
 

@@ -51,9 +51,14 @@ export class PlayerInput extends React.Component {
   }
 }
 
+PlayerInput.defaultProps = {
+  dispatch: null,
+  pid: null,
+};
+
 PlayerInput.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
-  pid: React.PropTypes.number.isRequired,
+  dispatch: React.PropTypes.func,
+  pid: React.PropTypes.number,
 };
 
 export default connect()(PlayerInput);

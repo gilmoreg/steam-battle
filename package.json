@@ -11,6 +11,7 @@
     "start": "http-server -c-1 build",
     "dev": "run-p watch serve",
     "test": "mocha --recursive --compilers js:babel-core/register",
+    "test-components": "mocha --recursive --compilers js:babel-core/register --grep component",
     "build": "run-s build:*",
     "clean": "rimraf build",
     "serve": "npm start",

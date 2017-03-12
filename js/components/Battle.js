@@ -26,8 +26,12 @@ export class Battle extends React.Component {
   }
 }
 
+Battle.defaultProps = {
+  dispatch: null,
+};
+
 Battle.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
+  dispatch: React.PropTypes.func,
 };
 
 export default connect()(Battle);
