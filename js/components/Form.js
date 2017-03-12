@@ -51,15 +51,15 @@ export class Form extends React.Component {
         <PlayerInput pid={1} />
         <div className="buttons col-12">
           <button
-            className="button"
+            className="btn"
             id="fight-button"
             ref={(input) => { this.fightbutton = input; }}
             onClick={this.beginBattle}
             disabled
           >
-            Fight
+            <span>Fight</span>
           </button>
-          <button className="button" onClick={this.randomBattle}>Random</button>
+          <button className="btn" onClick={this.randomBattle}><span>Random</span></button>
         </div>
       </form>
     );

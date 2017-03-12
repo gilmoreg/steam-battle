@@ -20,7 +20,7 @@ export class Battle extends React.Component {
       <div className="battle col-12">
         <Player pid={0} />
         <Player pid={1} />
-        <button onClick={this.retry}>Battle again!</button>
+        <button className={'btn'} onClick={this.retry}><span>Battle again!</span></button>
       </div>
     );
   }

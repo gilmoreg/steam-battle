@@ -29,7 +29,7 @@
 body {
   background-color: #1b2838;
   color: #c6d4df;
-  font-family: Roboto, sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 header {
@@ -96,19 +96,58 @@ a, a:visited {
   padding-left: 0;
 }
 
+/* ------- */
+/* BUTTONS */
+/* ------- */
+
+.btn {
+  border-radius: 2px;
+  border: none;
+  padding: 1px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #A4D7F5;
+  transition: all 1.3s ease-out;
+  background-color: rgba(47, 137, 188, 1);
+  background-image: linear-gradient( to bottom, rgba(47, 137, 188, 1) 5%, rgba(23, 67, 92, 1) 95%);
+  font-family: sans-serif;
+}
+
+.btn span {
+  border-radius: 2px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(164, 215, 245);
+  background-color: #a4d007;
+  background-image: linear-gradient( to bottom, rgba(33, 101, 138, 1) 5%, rgba(23, 67, 92, 1) 95%);
+  padding: 0 15px;
+  font-size: 15px;
+  line-height: 30px;
+  width: 100%;
+}
+
+.btn span:hover {
+  color: #ffffff;
+  background-image: linear-gradient( to bottom, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);
+}
+
 footer {
-    font-size: 9px;
-    text-align: center;
-    position: fixed;
-    width: 100%;
-    padding: 15px 0;
-    bottom: 0;
-    background-color: #171a21;
+  font-size: 9px;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  padding: 15px 0;
+  bottom: 0;
+  background-color: #171a21;
 }
 
 footer p {
     margin-bottom: 0px;
 }
+
+/* UTILITY */
 
 .black {
   outline: 1px solid black;
