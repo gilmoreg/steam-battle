@@ -7,11 +7,6 @@ export default function SmallProfile(props) {
         <img
           src={props.profile.avatar}
           alt={props.profile.personaname}
-          style={{
-            height: '32px',
-            width: '32px',
-            marginRight: '10px',
-          }}
         />
         <span>{props.profile.personaname}</span>
       </div>
@@ -22,11 +17,6 @@ export default function SmallProfile(props) {
       <img
         src={'https://steamdb.info/static/img/default.jpg'}
         alt={'Default Steam avatar'}
-        style={{
-          height: '32px',
-          width: '32px',
-          marginRight: '10px',
-        }}
       />
     </div>
   );

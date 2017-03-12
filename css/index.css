@@ -96,6 +96,23 @@ a, a:visited {
   padding-left: 0;
 }
 
+/* Form */
+.small-profile {
+  padding-bottom: 10px;
+}
+
+.small-profile img {
+  height: 32px;
+  width: 32px;
+  margin-right: 10px;
+}
+
+.small-profile span {
+  display: inline-block;
+  position: relative;
+  top: -0.6em;
+}
+
 /* ------- */
 /* BUTTONS */
 /* ------- */
