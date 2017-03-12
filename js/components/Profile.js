@@ -25,10 +25,20 @@ export default function Profile(props) {
   );
 }
 
+Profile.defaultProps = {
+  profile: {
+    profileurl: null,
+    personaname: null,
+    avatarfull: null,
+    avatar: null,
+  },
+};
+
 Profile.propTypes = {
   profile: React.PropTypes.shape({
     profileurl: React.PropTypes.string,
     personaname: React.PropTypes.string,
     avatarfull: React.PropTypes.string,
+    avatar: React.PropTypes.string,
   }).isRequired,
 };
