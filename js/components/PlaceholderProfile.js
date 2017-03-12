@@ -16,7 +16,11 @@ export default function PlaceholderProfile(props) {
   );
 }
 
+PlaceholderProfile.defaultProps = {
+  id: null,
+};
+
 PlaceholderProfile.propTypes = {
-  id: React.PropTypes.number.isRequired,
+  id: React.PropTypes.number,
 };
 

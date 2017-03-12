@@ -3,7 +3,7 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable no-undef */
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import { shallow } from 'enzyme';
 import chai from 'chai';
 import PlaceholderProfile from '../../js/components/PlaceholderProfile';
 
@@ -11,12 +11,10 @@ const should = chai.should();
 
 describe('PlaceholderProfile component', () => {
   it('should render a component with props', () => {
-    const renderer = TestUtils.createRenderer();
-    renderer.render(<PlaceholderProfile id={0} />);
-    const result = renderer.getRenderOutput();
-    result.type.should.equal('div');
-    result.props.className.should.equal('profile');
-    result.props.id.should.equal('player0');
+    const wrapper = shallow(<PlaceholderProfile />);
+    wrapper.node.type.should.equal('div');
+    wrapper.node.props.className.should.equal('profile');
+    wrapper.node.props.id.should.equal('playernull');
     // TODO what else
   });
 });
