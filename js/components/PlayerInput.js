@@ -33,19 +33,22 @@ export class PlayerInput extends React.Component {
     this.testID(e.target.value);
   }
 
+  // {this.state.error ? this.state.error : ''}
+
   render() {
     return (
-      <div className="col-3">
+      <div className="player-input col-3">
         <h3>Player {this.props.pid + 1}</h3>
         <SmallProfile profile={this.state.profile} />
-        {this.state.error ? this.state.error : ''}
-        <input
-          type="text"
-          id={`player${this.props.pid + 1}-input`}
-          ref={(input) => { this.input = input; }}
-          onChange={this.handleChange}
-          placeholder="Enter a Steam ID..."
-        />
+        <div className="input--wrapper">
+          <input
+            type="text"
+            id={`player${this.props.pid + 1}-input`}
+            ref={(input) => { this.input = input; }}
+            onChange={this.handleChange}
+            placeholder="Enter a Steam ID..."
+          />
+        </div>
       </div>
     );
   }

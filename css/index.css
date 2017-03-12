@@ -150,6 +150,59 @@ a, a:visited {
   background-image: linear-gradient( to bottom, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);
 }
 
+button[disabled] {
+  opacity: .4;
+}
+
+.buttons {
+  padding-top: 25px;
+}
+
+/* --------------- */
+/* FORM COMPONENTS */
+/* --------------- */
+
+.input--wrapper {
+  position: relative;
+  width: 225px;
+  height: 36px;
+  border: 8px solid #1b5371;
+  border-radius: 3px;
+  box-shadow: 0 0 2px black;
+  margin: 0 auto;
+}
+
+input {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 4px;
+  left: 12px;
+  width: 244px;
+  height: 12px;
+  background-color: transparent;
+  color: #bfbfbf;
+  font-size: 18px;
+}
+
+::-webkit-input-placeholder {
+  color: #656c75;
+  font-style: italic;
+}
+
+/* PlayerInput Component */
+.player-input h3 {
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 10px;
+  font-size: 17px;
+  letter-spacing: 2px;
+  font-weight: normal;
+  padding-top: 2px;
+}
+
 footer {
   font-size: 9px;
   text-align: center;
