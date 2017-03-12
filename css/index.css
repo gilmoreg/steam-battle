@@ -29,7 +29,7 @@
 body {
   background-color: #1b2838;
   color: #c6d4df;
-  font-family: Roboto, sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 header {
@@ -39,13 +39,10 @@ header {
 header h1 {
   margin-top: 0px;
   padding-top: 20px;
-}
-
-header p {
   padding-bottom: 20px;
 }
 
-header, form {
+header, p, form {
     text-align: center;
 }
 
@@ -96,19 +93,128 @@ a, a:visited {
   padding-left: 0;
 }
 
+/* Form */
+.small-profile {
+  padding-bottom: 10px;
+}
+
+.small-profile img {
+  height: 32px;
+  width: 32px;
+  margin-right: 10px;
+}
+
+.small-profile span {
+  display: inline-block;
+  position: relative;
+  top: -0.6em;
+}
+
+/* ------- */
+/* BUTTONS */
+/* ------- */
+
+.btn {
+  border-radius: 2px;
+  border: none;
+  padding: 1px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #A4D7F5;
+  transition: all 1.3s ease-out;
+  background-color: rgba(47, 137, 188, 1);
+  background-image: linear-gradient( to bottom, rgba(47, 137, 188, 1) 5%, rgba(23, 67, 92, 1) 95%);
+  font-family: sans-serif;
+}
+
+.btn span {
+  border-radius: 2px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(164, 215, 245);
+  background-color: #a4d007;
+  background-image: linear-gradient( to bottom, rgba(33, 101, 138, 1) 5%, rgba(23, 67, 92, 1) 95%);
+  padding: 0 15px;
+  font-size: 15px;
+  line-height: 30px;
+  width: 100%;
+}
+
+.btn span:hover {
+  color: #ffffff;
+  background-image: linear-gradient( to bottom, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);
+}
+
+button[disabled] {
+  opacity: .4;
+}
+
+.buttons {
+  padding-top: 25px;
+}
+
+/* --------------- */
+/* FORM COMPONENTS */
+/* --------------- */
+
+.input--wrapper {
+  position: relative;
+  width: 225px;
+  height: 36px;
+  border: 8px solid #1b5371;
+  border-radius: 3px;
+  box-shadow: 0 0 2px black;
+  margin: 0 auto;
+}
+
+input {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 4px;
+  left: 12px;
+  width: 244px;
+  height: 12px;
+  background-color: transparent;
+  color: #bfbfbf;
+  font-size: 18px;
+}
+
+::-webkit-input-placeholder {
+  color: #656c75;
+  font-style: italic;
+}
+
+/* PlayerInput Component */
+.player-input h3 {
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 10px;
+  font-size: 17px;
+  letter-spacing: 2px;
+  font-weight: normal;
+  padding-top: 2px;
+}
+
 footer {
-    font-size: 9px;
-    text-align: center;
-    position: fixed;
-    width: 100%;
-    padding: 15px 0;
-    bottom: 0;
-    background-color: #171a21;
+  font-size: 9px;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  padding: 15px 0;
+  bottom: 0;
+  background-color: #171a21;
 }
 
 footer p {
     margin-bottom: 0px;
 }
+
+/* UTILITY */
 
 .black {
   outline: 1px solid black;
