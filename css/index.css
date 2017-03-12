@@ -30,6 +30,16 @@ body {
   background-color: #1b2838;
   color: #c6d4df;
   font-family: 'Source Sans Pro', sans-serif;
+  text-align: center;
+}
+
+body > p {
+  color: #fff;
+  margin: 0 0 10px;
+  font-size: 17px;
+  letter-spacing: 2px;
+  font-weight: normal;
+  padding-top: 2px;
 }
 
 header {
@@ -42,10 +52,6 @@ header h1 {
   padding-bottom: 20px;
 }
 
-header, p, form {
-    text-align: center;
-}
-
 label, input, button {
   display:block;
   margin: 0 auto;
@@ -55,14 +61,6 @@ button {
   width: 150px;
   margin-top: 10px;
   margin-bottom: 10px;
-}
-
-.button {
-  margin: 10px auto;
-}
-
-.battle {
-  text-align: center;
 }
 
 .player {
@@ -108,6 +106,9 @@ a, a:visited {
   display: inline-block;
   position: relative;
   top: -0.6em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ------- */
