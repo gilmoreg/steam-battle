@@ -15,6 +15,5 @@ describe('PlaceholderProfile component', () => {
     wrapper.node.type.should.equal('div');
     wrapper.node.props.className.should.equal('profile');
     wrapper.node.props.id.should.equal('playernull');
-    // TODO what else
   });
 });

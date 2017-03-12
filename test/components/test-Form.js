@@ -12,8 +12,9 @@ const should = chai.should();
 describe('Form component', () => {
   it('should render a component', () => {
     const wrapper = shallow(<Form />);
-    // TODO what else
-    // test if the error displays correctly
-    // once I get mocking working, test if the functions fire right
+    wrapper.node.type.should.equal('form');
+    wrapper.node.props.onSubmit.should.be.a.function;
+    wrapper.node.props.children[0].type.displayName.should.equal('Connect(PlayerInput)');
+    wrapper.node.props.children[1].type.displayName.should.equal('Connect(PlayerInput)');
   });
 });

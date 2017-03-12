@@ -3,7 +3,7 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable no-undef */
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import { shallow } from 'enzyme';
 import chai from 'chai';
 import { Player } from '../../js/components/Player';
 import Profile from '../../js/components/Profile';
@@ -14,7 +14,6 @@ const should = chai.should();
 
 describe('Player component', () => {
   it('should render a component with props', () => {
-    const renderer = TestUtils.createRenderer();
     const player = {
       id: 'test',
       profile: {
@@ -30,22 +29,17 @@ describe('Player component', () => {
         total: 0
       },
     };
-    renderer.render(<Player player={player} pid={0} />);
-    const result = renderer.getRenderOutput();
-    result.type.should.equal('div');
-    result.props.className.should.equal('player col-3');
-    result.props.id.should.equal('player0');
-    result.props.children[0].should.equal('Winner');
-    result.props.children[1].type.should.equal(Profile);
-    result.props.children[2].type.should.equal(Score);
-    // TODO what else
+    const wrapper = shallow(<Player pid={0} player={player} winner={1} />);
+    wrapper.node.type.should.equal('div');
+    wrapper.node.props.id.should.equal('player0');
+    wrapper.node.props.className.should.equal('player col-3');
+    wrapper.node.props.children[0].should.equal('Loser');
   });
   it('should render a component with default props', () => {
-    const renderer = TestUtils.createRenderer();
-    renderer.render(<Player pid={0} />);
-    const result = renderer.getRenderOutput();
-    result.type.should.equal('div');
-    result.props.children.type.should.equal(PlaceholderProfile);
-    // TODO what else
+    const wrapper = shallow(<Player pid={0} />);
+    wrapper.node.type.should.equal('div');
+    wrapper.node.props.id.should.equal('player0');
+    wrapper.node.props.className.should.equal('player col-3');
+    wrapper.find(PlaceholderProfile).should.have.length(1);
   });
 });
