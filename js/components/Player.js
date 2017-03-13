@@ -9,7 +9,7 @@ export function Player(props) {
   if (player && player.profile) {
     return (
       <div id={`player${props.pid}`} className="player col-3">
-        {(props.winner === props.pid) ? 'Winner' : 'Loser'}
+        <h2>{(props.winner === props.pid) ? 'Winner' : 'Loser'}</h2>
         <Profile profile={player.profile} id={props.pid} />
         <Score score={player.score} />
       </div>

@@ -4,7 +4,7 @@ export default function Profile(props) {
   const { profile } = props;
   return (
     <div className="profile">
-      <h2>
+      <h3>
         <a
           href={profile.profileurl}
           target="_blank"
@@ -13,7 +13,7 @@ export default function Profile(props) {
         >
           {profile.personaname}
         </a>
-      </h2>
+      </h3>
       <p>
         <img
           src={profile.avatarfull}
