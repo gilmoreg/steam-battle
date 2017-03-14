@@ -59,6 +59,10 @@ header h1 {
   padding-bottom: 20px;
 }
 
+#app {
+  padding-bottom: 60px;
+}
+
 label, input, button {
   display:block;
   margin: 0 auto;
@@ -237,6 +241,8 @@ input {
   padding-top: 10px;
 }
 
+
+/* Footer */
 footer {
   font-size: 9px;
   text-align: center;
