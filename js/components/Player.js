@@ -6,10 +6,17 @@ import PlaceholderProfile from './PlaceholderProfile';
 
 export function Player(props) {
   const { player } = props;
+  let winner;
+  if (props.winner === props.pid) winner = 'Winner';
+  else if (props.winner !== props.pid) winner = 'Loser';
+  if (props.winner > 1) winner = 'Tie';
   if (player && player.profile) {
     return (
-      <div id={`player${props.pid}`} className="player col-3">
-        <h2>{(props.winner === props.pid) ? 'Winner' : 'Loser'}</h2>
+      <div
+        id={`player${props.pid}`}
+        className={`player col-3 ${(winner === 'Winner' ? 'winner' : '')}`}
+      >
+        <h2>{winner}</h2>
         <Profile profile={player.profile} id={props.pid} />
         <Score score={player.score} />
       </div>
