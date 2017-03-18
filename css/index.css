@@ -32,15 +32,17 @@ body {
   text-align: center;
 }
 
-body > p {
+form > p {
   color: #66C0F4;
-  margin: 0 0 10px;
-  font-size: 24px;
+  margin: 0 auto 10px;
+  font-size: 16px;
   letter-spacing: 2px;
   font-weight: normal;
   font-family: Arial, Helvetica, sans-serif;
   padding-top: 2px;
   padding-bottom: 10px;
+  max-width: 768px;
+  line-height: 20px;
 }
 
 h1 > img {
