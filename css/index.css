@@ -6,7 +6,6 @@
 [class*="col-"] {
   width: 100%;
   display: inline-block;
-  margin-right: -0.2em; /* small hack to fix inline block spacing */
   vertical-align: top;
 }
 
