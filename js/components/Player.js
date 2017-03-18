@@ -14,7 +14,7 @@ export function Player(props) {
     return (
       <div
         id={`player${props.pid}`}
-        className={`player col-3 ${(winner === 'Winner' ? 'winner' : '')}`}
+        className={`player show-player col-3 ${(winner === 'Winner' ? 'winner' : '')}`}
       >
         <h2>{winner}</h2>
         <Profile profile={player.profile} id={props.pid} />
@@ -23,10 +23,11 @@ export function Player(props) {
     );
   }
   return (
-    <div id={`player${props.pid}`} className="player col-3">
+    /* <div id={`player${props.pid}`} className="player col-3">
       <PlaceholderProfile id={props.pid} />
       <Score />
-    </div>
+    </div>*/
+    <div />
   );
 }
 
