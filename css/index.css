@@ -59,11 +59,11 @@ header h1 {
 }
 
 #app {
-  padding-bottom: 60px;
+  padding: 0 20px 60px 20px;
 }
 
 label, input, button {
-  display:block;
+  display: block;
   margin: 0 auto;
 }
 
@@ -90,6 +90,7 @@ button {
 
 .player h2 {
   margin-top: 0px;
+  text-transform: uppercase;
 }
 
 a, a:visited {
@@ -128,7 +129,7 @@ a, a:visited {
 }
 
 .winner {
-  box-shadow: inset 0 0 0 10px #2f89bc;
+  box-shadow: inset 0 0 0 10px #2f89bc, 0 0 15px black;
 }
 
 .loser {
