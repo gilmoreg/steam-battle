@@ -73,27 +73,47 @@ button {
   margin-bottom: 10px;
 }
 
-#player0, #player1 { 
-  transition: all .7s ease-out .3s; 
-  opacity: 0; 
-} 
-
-#player0 { 
-  -webkit-transform: translateX(-500px); 
-  transform: translateX(-500px); 
-} 
-
-#player1 { 
-  -webkit-transform: translateX(500px);
-  transform: translateX(500px); 
-} 
-  
-#player0.show-player, 
-#player1.show-player { 
-  /*-webkit-transform: translateX(0px); 
-  transform: translateX(0px);*/
-  opacity: 1; 
+#player0,
+#player1 {
+  opacity: 0;
 }
+
+#player0 {
+  -webkit-transform: translateX(-500px);
+  transform: translateX(-500px);
+  animation: .3s linear .3s forwards showPlayerOne;
+
+}
+#player1 {
+  -webkit-transform: translateX(500px);
+  transform: translateX(500px);
+  animation: .3s linear .3s forwards showPlayerTwo;
+}
+
+@keyframes showPlayerOne {
+  from {
+    -webkit-transform: translateX(-500px);
+    transform: translateX(-500px);
+  }
+  to {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes showPlayerTwo {
+  from {
+    -webkit-transform: translateX(500px);
+    transform: translateX(500px);
+  }
+  to {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
 
 .player {
   text-align: center;
