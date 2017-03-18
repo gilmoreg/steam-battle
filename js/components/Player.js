@@ -17,7 +17,7 @@ export function Player(props) {
         id={`player${props.pid}`}
         className={`player show-player col-3 ${(winner === 'Winner' ? 'winner' : '')}`}
       >
-        <h2>{winner}</h2>
+        <h2 className={(winner === 'Winner') ? 'wintext' : ''} >{winner}</h2>
         <Profile profile={player.profile} id={props.pid} />
         <Score score={player.score} />
       </div>

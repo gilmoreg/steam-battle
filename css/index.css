@@ -178,6 +178,10 @@ a, a:visited {
   box-shadow: inset 0 0 0 10px #2f89bc, 0 0 15px black;
 }
 
+.wintext {
+  color: #a4d007;
+}
+
 .loser {
   opacity: 0.75;
 }
