@@ -1,8 +1,9 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
 import Score from './Score';
 import Profile from './Profile';
-import PlaceholderProfile from './PlaceholderProfile';
+
 
 export function Player(props) {
   const { player } = props;
