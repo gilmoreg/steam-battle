@@ -81,12 +81,16 @@ button {
 #player0 {
   -webkit-transform: translateX(-500px);
   transform: translateX(-500px);
+  -webkit-transition-timing-function: ease-out; 
+  transition-timing-function: ease-out;
   animation: .3s linear .3s forwards showPlayerOne;
 
 }
 #player1 {
   -webkit-transform: translateX(500px);
   transform: translateX(500px);
+  -webkit-transition-timing-function: ease-out; 
+  transition-timing-function: ease-out;
   animation: .3s linear .3s forwards showPlayerTwo;
 }
 
@@ -242,6 +246,25 @@ button[disabled] {
 .buttons {
   padding-top: 25px;
 }
+
+.battle-again {
+  animation: .3s linear .7s forwards trickButton;
+  opacity: 0;
+}
+
+@keyframes trickButton {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 1
+  }
+}
+
+
 
 /* --------------- */
 /* FORM COMPONENTS */
