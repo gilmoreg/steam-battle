@@ -81,13 +81,13 @@ button {
 #player0 {
   -webkit-transform: translateX(-500px);
   transform: translateX(-500px);
-  animation: .3s linear .3s forwards showPlayerOne;
+  animation: .2s linear .3s forwards showPlayerOne;
 
 }
 #player1 {
   -webkit-transform: translateX(500px);
   transform: translateX(500px);
-  animation: .3s linear .3s forwards showPlayerTwo;
+  animation: .2s linear .3s forwards showPlayerTwo;
 }
 
 @keyframes showPlayerOne {
