@@ -81,12 +81,16 @@ button {
 #player0 {
   -webkit-transform: translateX(-500px);
   transform: translateX(-500px);
+  -webkit-transition-timing-function: ease-out; 
+  transition-timing-function: ease-out;
   animation: .3s linear .3s forwards showPlayerOne;
 
 }
 #player1 {
   -webkit-transform: translateX(500px);
   transform: translateX(500px);
+  -webkit-transition-timing-function: ease-out; 
+  transition-timing-function: ease-out;
   animation: .3s linear .3s forwards showPlayerTwo;
 }
 
