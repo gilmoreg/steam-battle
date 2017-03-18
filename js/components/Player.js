@@ -25,6 +25,7 @@ export function Player(props) {
   return (
     <div id={`player${props.pid}`} className="player col-3">
       <PlaceholderProfile id={props.pid} />
+      <Score />
     </div>
   );
 }
