@@ -47,6 +47,8 @@ export class Form extends React.Component {
   render() {
     return (
       <form onSubmit={this.beginBattle}>
+        <p>Enter two Steam players by ID (32bit, 64bit, ID3, or custom URL). Steam Battle will let you know as you type whether you have a valid ID.</p>
+        <p>If you need help finding your Steam ID, please visit <a href="https://steamid.xyz/" rel="noopener noreferrer" target="_blank">Steam ID Finder</a>. If you {`don't`} know any Steam players you can hit {`"Random"`} to initiate a random battle.</p>
         <PlayerInput pid={0} />
         <PlayerInput pid={1} />
         <div className="buttons col-12">
