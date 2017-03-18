@@ -243,6 +243,25 @@ button[disabled] {
   padding-top: 25px;
 }
 
+.battle-again {
+  animation: .3s linear .7s forwards trickButton;
+  opacity: 0;
+}
+
+@keyframes trickButton {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 1
+  }
+}
+
+
+
 /* --------------- */
 /* FORM COMPONENTS */
 /* --------------- */

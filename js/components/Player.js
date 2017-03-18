@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
 import Score from './Score';
 import Profile from './Profile';
+import PlaceholderProfile from './PlaceholderProfile';
 
 
 export function Player(props) {
@@ -24,11 +24,10 @@ export function Player(props) {
     );
   }
   return (
-    /* <div id={`player${props.pid}`} className="player col-3">
+    <div style={{ visibility: 'hidden' }}id={`player${props.pid}`} className="player col-3">
       <PlaceholderProfile id={props.pid} />
       <Score />
-    </div>*/
-    <div />
+    </div>
   );
 }
 
