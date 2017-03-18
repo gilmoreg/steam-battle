@@ -59,7 +59,7 @@ header h1 {
 }
 
 #app {
-  padding-bottom: 60px;
+  padding: 0 20px 60px 20px;
 }
 
 label, input, button {
