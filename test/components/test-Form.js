@@ -14,7 +14,7 @@ describe('Form component', () => {
     const wrapper = shallow(<Form />);
     wrapper.node.type.should.equal('form');
     wrapper.node.props.onSubmit.should.be.a.function;
-    wrapper.node.props.children[0].type.displayName.should.equal('Connect(PlayerInput)');
-    wrapper.node.props.children[1].type.displayName.should.equal('Connect(PlayerInput)');
+    wrapper.node.props.children[0].type.should.equal('p');
+    wrapper.node.props.children[1].type.should.equal('p');
   });
 });

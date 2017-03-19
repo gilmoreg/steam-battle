@@ -32,8 +32,8 @@ describe('Player component', () => {
     const wrapper = shallow(<Player pid={0} player={player} winner={1} />);
     wrapper.node.type.should.equal('div');
     wrapper.node.props.id.should.equal('player0');
-    wrapper.node.props.className.should.equal('player col-3');
-    wrapper.node.props.children[0].should.equal('Loser');
+    wrapper.node.props.className.should.equal('player show-player col-3 ');
+    wrapper.node.props.children[0].props.children.should.equal('Loser');
   });
   it('should render a component with default props', () => {
     const wrapper = shallow(<Player pid={0} />);

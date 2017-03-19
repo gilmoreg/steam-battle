@@ -20,7 +20,7 @@ describe('Profile component', () => {
     const wrapper = shallow(<Profile pid={0} />);
     wrapper.node.type.should.equal('div');
     wrapper.node.props.className.should.equal('profile');
-    wrapper.node.props.children[0].type.should.equal('h2');
+    wrapper.node.props.children[0].type.should.equal('h3');
     wrapper.node.props.children[1].type.should.equal('p');
   });
 });
