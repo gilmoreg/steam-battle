@@ -6,8 +6,7 @@ by [Grayson Gilmore](https://github.com/gilmoreg/).
 [See the live site here](https://gilmoreg.github.io/steam-battle/).
 
 ## Screenshots
-![pre-battle](https://cloud.githubusercontent.com/assets/18176333/24309649/a84e9c38-109a-11e7-9f19-3563a717a080.png)
-![post-battle](https://cloud.githubusercontent.com/assets/18176333/24309651/a9e9bfbe-109a-11e7-979f-365972239af6.png)
+![steam battle montage](https://cloud.githubusercontent.com/assets/18176333/24309924/c9490b84-109b-11e7-8f7a-4d2e4ee1b365.png)
 
 ## Summary
 Enter two Steam IDs ([in any of the accepted formats](https://developer.valvesoftware.com/wiki/SteamID)) and see which gamer is more hardcore! Steam Battle will calculate a score based on the number of games owned and hours played; time played in the last two weeks counts for double!
