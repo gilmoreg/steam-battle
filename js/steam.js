@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ENDPOINT = 'https://protected-dusk-95868.herokuapp.com';
+const ENDPOINT = 'https://us-central1-steam-battle-serverless.cloudfunctions.net';
 
 const steamIDs = [
   '76561198004854956',
@@ -38,7 +38,7 @@ const getRandomIDs = () => {
  */
 const checkID = id =>
   new Promise((resolve, reject) => {
-    const url = `${ENDPOINT}/checkid/${id}`;
+    const url = `${ENDPOINT}/checkid?id=${id}`;
     axios(url)
       .then((player) => {
         if (player && player.data && player.data.id && player.data.profile) {
@@ -54,7 +54,7 @@ const checkID = id =>
  */
 const getPlayer = id =>
   new Promise((resolve, reject) => {
-    const url = `${ENDPOINT}/player/${id}`;
+    const url = `${ENDPOINT}/player?id=${id}`;
     axios(url)
       .then((player) => {
         if (player && player.data && player.data.player) resolve(player.data.player);
