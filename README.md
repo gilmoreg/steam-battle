@@ -19,7 +19,7 @@ If you don't know any Steam users you can just hit Random to see a battle betwee
 * This is a React/Redux client-side app.
 * Uses Thunk middleware to handle async actions.
 * Uses React Router hash history for client side routing.
-* Calls to the Steam API are relayed through a Node/Express server running [steam-battle-api](https://github.com/gilmoreg/steam-battle-api) to avoid CORS issues and optimize data for use by the client.
+* Calls to the Steam API are relayed through Google Cloud Functions ([steam-battle-serverless](https://github.com/gilmoreg/steam-battle-serverless)) to avoid CORS issues and optimize data for use by the client.
 * Components, actions, and reducers are tested via Mocha, Chai, and enzyme.
 
 ### Dependencies
