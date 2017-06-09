@@ -138,11 +138,11 @@ describe('Async Actions', () => {
   });
 
   it('should create an action to initiate a battle between two players', (done) => {
-    moxios.stubRequest(/.*(player\/test1).*/, {
+    moxios.stubRequest(/.*(player\?id=test1).*/, {
       status: 200,
       responseText: JSON.stringify(fakePlayer),
     });
-    moxios.stubRequest(/.*(player\/test2).*/, {
+    moxios.stubRequest(/.*(player\?id=test2).*/, {
       status: 200,
       responseText: JSON.stringify(fakePlayer2),
     });
