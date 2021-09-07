@@ -78,7 +78,7 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.21.3",
     "lodash.debounce": "^4.0.8",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
